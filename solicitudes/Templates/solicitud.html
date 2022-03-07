@@ -1,0 +1,33 @@
+{%  extends "index.html" %}
+{%  block title %}
+Registro de Solicitudes
+{%  endblock    %}
+
+<br><br><br>
+
+{%  block content   %}
+<br><br>
+<div class="container ">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-auto">
+            <div class="card cardContainer" >
+                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                    <h5 class="card-title">{{datos.nombre}}</h5>
+                    <p class="card-text">Razón social: {{datos.razonS}}</p>
+                    <p class="card-text">Número Proveedor: {{datos.numProveedor}}</p>
+                    <p class="card-text">Vinculación: {{datos.vinculacion}}</p>
+                    <p class="card-text">Marca: {{datos.marca}}</p>
+                    <p class="card-text">Fecha: {{datos.fecha}}</p>
+                
+                    <a href="#" class="btn btn-primary">Editar</a>
+                    <a href="#" class="btn btn-warning">Ver documentos</a>
+                
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br>
+{%  endblock    %}

@@ -1,0 +1,45 @@
+{%  extends "index.html" %}
+{%  block title %}
+Registro de Solicitudes
+{%  endblock    %}
+
+<br><br><br>
+
+{%  block content   %}
+<h1 style="color: #eff2f3;"><center>Formato de registro</center></h1>
+<div class="container ">
+    <form action="/registrarSolicitud/" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <div class="row">
+            <div class="col-lg-6  p-5">
+                <br><br>
+                <table class="table ">
+                    {{  form1.as_table   }}
+                </table>
+            </div>
+            <div class="col-lg-6  p-5">
+                <h2 class="textLabel"><center>Documentos obligatorios</center></h2>
+                <table class="table ">
+                    {{  form2.as_table   }}
+                </table>
+                <h2 class="textLabel"><center>Otros documentos</center></h2>
+                <div>
+                    <label for="" class="textLabel">Anexar otros documentos</label>
+                    <select class="form-select" name="campo1" id="campo1">
+                        <option value="0" selected>Elija una opcion</option>
+                        <option value="1">Si</option>
+                        <option value="2">No</option>
+                    </select>
+                    <div class="mb-3" >
+                        {{  form3.as_table  }}
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3"><a
+                href="#"
+                style="text-decoration: none; color:white">
+                Enviar!</a>
+            </button>
+         </div>
+    </form>
+</div>
+{%  endblock  %}

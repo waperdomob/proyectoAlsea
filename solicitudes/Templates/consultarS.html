@@ -1,0 +1,80 @@
+{%  extends "index.html" %}
+{%  block title %}
+Consultar de Solicitudes
+{%  endblock    %}
+
+<br><br><br>
+{%  block content   %}
+    <h1 style="color: #f7f8f8;"><center>Consulte si la Solicitud esta completa</center></h1>
+    <br><br>
+    
+    <form action="/consultarSolicitud/" method="POST">
+        <div class="mb-3 container contCon" role="alert" >
+            <label for="" class="form-label">Ingrese el número de Rut o Nit</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+            <button type="submit" class="btn btn-primary mt-3"><a
+                href="#"
+                style="text-decoration: none; color:white">
+                Consultar</a>
+            </button>
+        </div>
+        
+    </form>
+    <br><br>
+    <div class="container contCon" >
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                Formato de inscripcion y actualizacion
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+                Camara de comercio
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                Certificaciones bancarias
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+                RUT/NIT
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                Cedula representante legal
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+                Certificado cuestionario LA/FT
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                Consulta listas vinculantes
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+                Compromiso de adhesion
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+                Certificado anticorrupcion
+            </label>
+        </div>
+    </div>
+{%  endblock  %}
