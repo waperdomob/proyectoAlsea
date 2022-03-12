@@ -7,27 +7,47 @@ Registro de Solicitudes
 
 {%  block content   %}
 <br><br>
-<div class="container ">
+<div class="container contenedor">
     <div class="row justify-content-center align-items-center">
-        <div class="col-auto">
-            <div class="card cardContainer" >
+        <div class="col-sm-6 col-md-4">
+            <div class=" cardContainer" >
                 <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
-                    <h5 class="card-title">{{datos.nombre}}</h5>
-                    <p class="card-text">Razón social: {{datos.razonS}}</p>
-                    <p class="card-text">Número Proveedor: {{datos.numProveedor}}</p>
-                    <p class="card-text">Vinculación: {{datos.vinculacion}}</p>
-                    <p class="card-text">Marca: {{datos.marca}}</p>
-                    <p class="card-text">Fecha: {{datos.fecha}}</p>
+                    <h5 class="textLabel">{{datos.nombre}}</h5>
+                    <p class="textLabel">Razón social: {{datos.razonSocial}}</p>
+                    <p class="textLabel">Número Proveedor: {{datos.numProveedor}}</p>
+                    <p class="textLabel">{{datos.vinculacion}}</p>
+                    <p class="textLabel">Marca: {{datos.marca}}</p>
+                    <p class="textLabel">Fecha: {{datos.fecha}}</p>
+
                 
                     <a href="#" class="btn btn-primary">Editar</a>
-                    <a href="#" class="btn btn-warning">Ver documentos</a>
+                    
                 
-                </div>                
+                </div> 
+                            
+            </div>
+        </div>
+
+        <div class="col-6 col-md-5">
+            <div class="cardContainer">
+                <ul>
+                    {% for object in docs %}
+                    <li class="">
+                        <h5 class="textLabel">{{object.nombre}}</h5>
+                        <a href="{{ object.doc_file }}" class="btn btn-primary">Ver archivo </a>      
+                    </li>  
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
+    
 </div>
 
 <br><br>
+<br><br>
+<br><br>
+<br><br><br>
+
 {%  endblock    %}

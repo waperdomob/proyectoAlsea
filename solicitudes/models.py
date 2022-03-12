@@ -20,15 +20,13 @@ class Solicitudes(models.Model):
     numProveedor = models.CharField(max_length=45)
     fecha = models.DateField()
     vinculacion = models.CharField(max_length=45)
-    marca_id = models.ForeignKey(Marca,null=True, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.rutNit
+    marca = models.ForeignKey(Marca,null=True, on_delete=models.CASCADE)
+    
 
 class Documentos(models.Model):
     
-    upload = models.FileField(upload_to='file/%Y/%m/%d/')
-    nombre = models.CharField(max_length=45)
+    nombre = models.CharField(max_length=100)
+    doc_file = models.FileField(upload_to='static/file/%Y/%m/%d/',default="")    
     solicitudes_rutNit = models.ForeignKey(Solicitudes,null=False, on_delete=models.CASCADE)
     
     def __str__(self):

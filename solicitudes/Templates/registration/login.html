@@ -15,21 +15,22 @@ box-shadow: 5px 5px 5px 5px #ec760750;">
             <section>
                 <div>
                     {% load static %}
-            <img src="{% static 'Alsea_logo.png' %}" alt="" width="150px" height="40">
+            <img src="{% static 'img/Alsea.png' %}" alt=""  height="40">
                 </div>
             </section>
             <section>
                 <h1 class="tituloInicio" >Inicio Sesión</h1>
             </section>
-            <form>
+            <form method="post" action="{% url 'login' %}">
+                {%  csrf_token %}
                 <div class="form-group mt-4">
-                <label for="exampleInputEmail1" class="textLabel">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <label for="exampleInputEmail1" class="textLabel">Username</label>
+                <input type="text" class="form-control" id="" aria-describedby="" name="username" required>
                 <div id="emailHelp" class="textLabel">We'll never share your email with anyone else.</div>
                 </div>
                 <div class="form-group mt-4">
                 <label for="exampleInputPassword1" class="textLabel">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <input type="password" class="form-control" id="Password1" name="password" required>
                 </div>
                 <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -62,36 +63,29 @@ box-shadow: 5px 5px 5px 5px #ec760750;">
             </form>
         </div>
         <!-- div derecho imagen and texto  -->
-        <div class="imagen" style=" 
-        background: linear-gradient(to right, #c06f499d, #7b4d3685, #0c082c81), url(../static/Alsea_logo.png);    
+        <div class="col-lg-6 p-5" style=" 
+        background: linear-gradient(to right, #c06f499d, #7b4d3685, #0c082c81);
         position: relative;">
-            <div class="caption " style="position: absolute;
-            top: 25%;
-            width: 100%;">
+            <div class="container">
                 <section>
-                    <h3 class=" letraImagen" >!No te has registrado!</h3>
+                    <h3 class=" letraImagen" >!Bienvenido!</h3>
                 </section>
                 <div class="textoicon" style="width: 80%;
-                margin: 5% auto auto 10%;">
+                margin: 10% auto auto 10%;">
                     <div>
                         <i class="far fa-check-circle">
                         </i>
-                        <p class="mensajeparrafo"> Registrate </p>
+                        <p class="mensajeparrafo" >Realiza tus Solicitudes de una forma rápida y sencilla, Lorem ipsum dolor sit amet consectetur adipisicing elit. Alsea </p>
                     </div>
-                    <br>
-                    <div>
-                        <i class="far fa-check-circle">
-                        </i>
-                        <p class="mensajeparrafo" >Realiza tus Solicitudes</p>
-                    </div>
+                    <div class="container imagen">
+                        <img src="../../static/img/alseaGente.jpg" alt="" width="280px" >
+                    </div>                    
                 </div>
-                <button type="submit" class="btn colorRegistro mt-3"><a
-                        href="#"
-                        style="text-decoration: none; color:white">
-                        Registrate!</a>
-                </button>
+               
             </div>
         </div>
     </div>            
 </div>
+
+<br><br><br>
 {%  endblock  %}
