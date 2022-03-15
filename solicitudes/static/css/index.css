@@ -37,12 +37,9 @@ html {
   }
   .cardContainer{
     
-    height: 100%;
-    margin: 0;
-    width: 100%;
-    display: flex;
+    
     justify-content: center;
-    align-items: center;
+    align-items:flex-start;
     text-align: center;
     border-radius: 20px;
     box-shadow: 5px 5px 5px 5px #ec760750;
@@ -70,6 +67,12 @@ html {
   .contenedor{
     background-image:url("../img/ALSEA.png"), url("../img/figura_familiares.svg"), url("../img/figura_rapida.svg"),url("../img/gaseosa.svg"), url("../img/figura_casual.svg"), url("../img/figura_sandwich.svg"); 
     background-position: 50% 15%, 0% 10%, 100% 10%, 50% 60%, 0% 60%, 100% 60%;
+    background-repeat: no-repeat, no-repeat, no-repeat,no-repeat, no-repeat, no-repeat; 
+    background-size: 100px 100px,100px 100px,100px 100px,100px 100px,100px 100px,100px 100px;
+  }
+  .contenedor2{
+    background-image:url("../img/ALSEA.png"), url("../img/figura_familiares.svg"), url("../img/figura_rapida.svg"),url("../img/gaseosa.svg"), url("../img/figura_casual.svg"), url("../img/figura_sandwich.svg"); 
+    background-position: 20% 90%, 0% 10%, 100% 10%, 35% 90%, 0% 60%, 100% 60%;
     background-repeat: no-repeat, no-repeat, no-repeat,no-repeat, no-repeat, no-repeat; 
     background-size: 100px 100px,100px 100px,100px 100px,100px 100px,100px 100px,100px 100px;
   }

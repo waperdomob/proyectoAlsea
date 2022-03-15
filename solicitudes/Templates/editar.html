@@ -1,0 +1,24 @@
+{%  extends "index.html" %}
+{%  block title %}
+Editar Solicitud
+{%  endblock    %}
+
+<br><br><br>
+
+{%  block content   %}
+<form action="{% url 'actualizar' %}" method="POST" >{% csrf_token %}
+    <div class="row justify-content-center">
+        <div class="col-lg-6  p-5">
+            <br><br>
+            <div class="mb-3" >
+                {{  form1.as_table   }}
+            </div>
+            <div class="">
+                <button type="submit" class="centrado" style="text-decoration: none; color:white">
+                    Actualizar!
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+{%  endblock    %}

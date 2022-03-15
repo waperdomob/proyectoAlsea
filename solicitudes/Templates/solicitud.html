@@ -7,11 +7,10 @@ Registro de Solicitudes
 
 {%  block content   %}
 <br><br>
-<div class="container contenedor">
-    <div class="row justify-content-center align-items-center">
+<div class="container contenedor2">
+    <div class="row justify-content-center">
         <div class="col-sm-6 col-md-4">
             <div class=" cardContainer" >
-                <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
                     <h5 class="textLabel">{{datos.nombre}}</h5>
                     <p class="textLabel">Razón social: {{datos.razonSocial}}</p>
@@ -20,8 +19,15 @@ Registro de Solicitudes
                     <p class="textLabel">Marca: {{datos.marca}}</p>
                     <p class="textLabel">Fecha: {{datos.fecha}}</p>
 
-                
-                    <a href="#" class="btn btn-primary">Editar</a>
+                    <form action="{% url 'editar' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" name="rutNit" value="{{ datos.rutNit }}" hidden>
+                        <button type="submit" class="btn btn-primary mt-3"
+                        style="text-decoration: none; color:white">
+                        Editar
+                    </button>
+                    </form>
+                    
                     
                 
                 </div> 
@@ -34,8 +40,14 @@ Registro de Solicitudes
                 <ul>
                     {% for object in docs %}
                     <li class="">
-                        <h5 class="textLabel">{{object.nombre}}</h5>
-                        <a href="{{ object.doc_file }}" class="btn btn-primary">Ver archivo </a>      
+                        <div class="row">
+                            <div class="col-sm-8 mt-3">
+                                <h5 class="textLabel">{{object.nombre}}</h5>
+                            </div>
+                            <div class="col-sm-4 mt-3">
+                                <a href="{{ object.doc_file }}" class="btn btn-primary">Ver archivo </a> 
+                            </div>                            
+                        </div>     
                     </li>  
                     {% endfor %}
                 </ul>

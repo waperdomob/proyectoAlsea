@@ -6,13 +6,13 @@ def handle_uploaded_file(f):
         for chunk in f.chunks():
             destination.write(chunk)
 
-def subirDocs(doc):
+def subirDocs(nombre,doc):
     
     fecha_actual=datetime.datetime.now()
-    f1_str = fecha_actual.strftime('%d_%m_%Y_')
+    f1_str = fecha_actual.strftime('%d/%m/%Y')
 
     fs = FileSystemStorage()
-    name1 = fs.save(f1_str+doc.name,doc)
+    name1 = fs.save(nombre+'.pdf',doc)
     url1 = fs.url(name1)
 
     return name1,url1

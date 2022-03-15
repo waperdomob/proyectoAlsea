@@ -5,11 +5,30 @@ Login
 
 
 {%  block content   %}
-<br><br><br>
+<br>
 <div class="container" style="margin-top: 2%;
 border-radius: 20px;
 box-shadow: 5px 5px 5px 5px #ec760750;">
     <div class="row">
+        
+        <!-- div derecho imagen and texto  -->
+        <div class="col-lg-6 p-5" style="
+        position: relative;">
+            <div class="container">                
+                <div class="" >
+                    <div>
+                        <i class="far fa-check-circle">
+                        </i>
+                        
+                    </div>
+                    <div class="container ">
+                        <img src="../../static/img/alseaGente.jpg" alt="" width="550px" >
+                    </div>                    
+                </div>
+               
+            </div>
+        </div>
+
         <div class="col-lg-6  p-5 ">
             <!-- parte del logo  -->
             <section>
@@ -45,7 +64,7 @@ box-shadow: 5px 5px 5px 5px #ec760750;">
                             <div class="col-sm mt-3">
                                
                                     <i class="fas fa-key"></i>
-                                    <a class="olvidoContrase" href="#">
+                                    <a class="olvidoContrase" href="{% url 'password_reset' %}">
                                         Forgot your password?
                                     </a>
                                 
@@ -62,29 +81,12 @@ box-shadow: 5px 5px 5px 5px #ec760750;">
                 <a href="/"><i class="fas fa-arrow-left mt-4"></i></a>
             </form>
         </div>
-        <!-- div derecho imagen and texto  -->
-        <div class="col-lg-6 p-5" style=" 
-        background: linear-gradient(to right, #c06f499d, #7b4d3685, #0c082c81);
-        position: relative;">
-            <div class="container">
-                <section>
-                    <h3 class=" letraImagen" >!Bienvenido!</h3>
-                </section>
-                <div class="textoicon" style="width: 80%;
-                margin: 10% auto auto 10%;">
-                    <div>
-                        <i class="far fa-check-circle">
-                        </i>
-                        <p class="mensajeparrafo" >Realiza tus Solicitudes de una forma rápida y sencilla, Lorem ipsum dolor sit amet consectetur adipisicing elit. Alsea </p>
-                    </div>
-                    <div class="container imagen">
-                        <img src="../../static/img/alseaGente.jpg" alt="" width="280px" >
-                    </div>                    
-                </div>
-               
-            </div>
-        </div>
-    </div>            
+    </div>
+    <section>
+        <h3 class=" letraImagen" >!Bienvenido!</h3>
+        <h5 class="textLabel" style="text-align: center;">Registra tus solicitudes, realiza correcciones y hazle un seguimiento, todo desde un mismo sitio</h5>
+        <br>
+    </section>            
 </div>
 
 <br><br><br>

@@ -35,14 +35,23 @@ class FormularioSolicitud(forms.Form):
 class FormularioDocs(forms.Form):
     required_css_class = 'textLabel'
     
+    nombre1=forms.CharField(initial="Formulario inscripcion_Actualizacion",widget=forms.HiddenInput())
     inscripcion_actualizacion = forms.FileField(widget=forms.FileInput(attrs={'class': 'form-control'}))
+    nombre2=forms.CharField(initial="Camara de comercio",widget=forms.HiddenInput())
     camaraComercio = forms.FileField(widget=forms.FileInput(attrs={'class': 'form-control'}),label="Camara de comercio")
+    nombre3=forms.CharField(initial="Certificaciones bancarias",widget=forms.HiddenInput())
     certificacionesBancarias = forms.FileField(widget=forms.FileInput(attrs={'class': 'form-control'}),label="Certificaciones bancarias")
+    nombre4=forms.CharField(initial="RutNit",widget=forms.HiddenInput())
     Rut_Nit = forms.FileField(widget=forms.FileInput(attrs={'class': 'form-control'}))
+    nombre5=forms.CharField(initial="Cedula",widget=forms.HiddenInput())
     cedula = forms.FileField(widget=forms.FileInput(attrs={'class': 'form-control'}),label="Cedula")
+    nombre6=forms.CharField(initial="Cuestionario_LAFT",widget=forms.HiddenInput())
     cuestionario_LAFT = forms.FileField(widget=forms.FileInput(attrs={'class': 'form-control'}),label= "Cuestionario LA/FT")
+    nombre7=forms.CharField(initial="Consulta listas vinculantes",widget=forms.HiddenInput())
     consulta_listas = forms.FileField(widget=forms.FileInput(attrs={'class': 'form-control'}), label="Consulta lista vinculantes")
+    nombre8=forms.CharField(initial="Compromiso de adhesion",widget=forms.HiddenInput())
     compromiso_adhesion = forms.FileField(widget=forms.FileInput(attrs={'class': 'form-control'}), label="Compromiso de adhesion")
+    nombre9=forms.CharField(initial="Certificado anticorrupcion",widget=forms.HiddenInput())
     certificado_anticorr = forms.FileField(widget=forms.FileInput(attrs={'class': 'form-control'}), label="Certificado anticorrupcion")
 
 class FormularioDocs2(forms.Form):
