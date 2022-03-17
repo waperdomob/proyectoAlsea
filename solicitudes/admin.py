@@ -6,7 +6,7 @@ class solicitudesAdmin(admin.ModelAdmin):
     list_display=("rutNit","ticket","nombre")
 
 class documentosAdmin(admin.ModelAdmin):
-    list_display=("nombre","doc_file")
+    list_display=("nombre","doc_file","solicitudes_rutNit_id")
 
 class marcaAdmin(admin.ModelAdmin):
     list_display=("marca",)

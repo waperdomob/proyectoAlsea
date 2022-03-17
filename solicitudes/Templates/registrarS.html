@@ -5,7 +5,7 @@ Registro de Solicitudes
 
 {%  block content   %}
 <br><br>
-<h1 style="color: #eff2f3;"><center>FORMATO DE REGISTRO</center></h1>
+<h2 style="color: #eff2f3;"><center>FORMATO DE REGISTRO</center></h2>
 <div class="container contenedorRegistrar">
     <form action="/registrarSolicitud/" method="POST" enctype="multipart/form-data">{% csrf_token %}
         <div class="row">
@@ -21,11 +21,11 @@ Registro de Solicitudes
                 </div>
             </div>
             <div class="col-lg-6  p-5">
-                <h2 style="color: #eff2f3;"><center>Documentos obligatorios</center></h2>
+                <h3 style="color: #eff2f3;"><center>Documentos obligatorios</center></h3>
                 <div class="mb-3" >
                     {{  form2.as_table   }}
                 </div>
-                <h2 class="textLabel"><center>Otros documentos</center></h2>
+                <h3 class="textLabel"><center>Otros documentos</center></h3>
                 <div>
                     <label for="" class="textLabel">Anexar otros documentos</label>
                     <select class="form-select" name="campo1" id="campo1">

@@ -5,7 +5,7 @@ from xml.dom.minidom import Attr
 from django import forms
 import datetime
 
-from matplotlib import widgets
+#from matplotlib import widgets
 from .models import Solicitudes, Documentos, Marca
 CHOICES =(
     ("0","Elija una opción"),
@@ -58,3 +58,14 @@ class FormularioDocs2(forms.Form):
     required_css_class = 'textLabel'
     
     otrosDocs = forms.FileField(label="Agregue los otros documentos",widget=forms.FileInput(attrs={'class': 'form-control','multiple': True}),disabled=True)
+
+class FormularioUpdate(forms.Form):
+    required_css_class = 'textLabel'
+    rutNit = forms.CharField(widget=forms.HiddenInput())
+    ticket = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control'}),label="Número del Ticket")
+    nombre = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    razonSocial = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}),label="Razón social")
+    numProveedor = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}),label="Número de proveedor")
+    fecha = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control'}),initial=datetime.date.today,disabled = True)
+    vinculacion = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}),label="Vinculación o Actualización",choices=CHOICES2)
+    marca = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}),choices=CHOICES)

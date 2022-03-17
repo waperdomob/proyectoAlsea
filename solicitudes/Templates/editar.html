@@ -3,22 +3,39 @@
 Editar Solicitud
 {%  endblock    %}
 
-<br><br><br>
-
 {%  block content   %}
-<form action="{% url 'actualizar' %}" method="POST" >{% csrf_token %}
-    <div class="row justify-content-center">
-        <div class="col-lg-6  p-5">
-            <br><br>
-            <div class="mb-3" >
-                {{  form1.as_table   }}
-            </div>
-            <div class="">
+<div class=" contenedor2">
+    <br>
+    <h2 style="color: #f7f8f8;"><center>Editar Solicitud!</center></h2>
+    
+    <form action="{% url 'actualizar' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        
+        <div class="row justify-content-center">
+            <div class="col-sm-6 col-md-4">
+                <br>
+                <div class="mb-3" >
+                    {{  form1.as_table   }}
+                </div> 
                 <button type="submit" class="centrado" style="text-decoration: none; color:white">
                     Actualizar!
-                </button>
+                </button>           
+            </div>
+            <div class="col-sm-6 col-md-4">            
+                <div class="mb-3" >
+                    <br>
+                    {% for object in form2 %}
+                        <div>
+                            <input type="text" name="nombre1" value="{{object.nombre}}" hidden>
+                            <label for="" class="textLabel"><a href="{{object.doc_file}}">{{object.nombre}}</a></label>
+                            <br>
+                            <input type="file" class="form-control" name="{{object.nombre}}">
+                        </div>
+                    {% endfor %}
+                </div>            
             </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>
+
+<br><br><br>
 {%  endblock    %}
