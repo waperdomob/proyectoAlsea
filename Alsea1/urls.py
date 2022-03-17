@@ -24,7 +24,6 @@ from solicitudes import views
 urlpatterns = [
     path('admin/', admin.site.urls),   
     path('',views.index, name='index'),
-    #path('password-reset/', ResetPasswordView.as_view(),name='password_reset'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('registrarS/',views.registrarS, name='registrarS'),
     path('registrarSolicitud/',views.registrarSolicitud, name='registrarSolicitud'),

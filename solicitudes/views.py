@@ -1,12 +1,14 @@
 
-import datetime 
+import datetime
+import os 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.middleware import *
 from django.http import HttpResponseRedirect
 from django.template import Template,Context
 from django.template.loader import get_template
 from django.shortcuts import get_object_or_404, redirect, render
-from django.core.files.storage import FileSystemStorage 
+from django.core.files.storage import default_storage, FileSystemStorage
 
 #from django.urls import reverse_lazy
 #from django.contrib.auth.views import PasswordResetView
@@ -27,9 +29,12 @@ from solicitudes.funcions.funcions import handle_uploaded_file,subirDocs, subirD
                       "please make sure you've entered the address you registered with, and check your spam folder."
     success_url = reverse_lazy('index')
  """
-def index(request):    
-    response = redirect('/accounts/login')
-    return response
+def index(request):   
+    if request.user.is_authenticated:
+        return render(request,"consultarS.html")
+    else:    
+        response = redirect('/accounts/login')
+        return response
 
 @login_required
 def documentos(request):    
@@ -146,9 +151,9 @@ def actualizar(request):
         for object in Docs:
             nombresDocs.append(object.nombre)
             idsDocs.append(object.id)
-            doc_file.append(object.id)
+            doc_file.append('C:/Alsea1/'+str(object.doc_file))
 
-        
+        print(doc_file)
         if user_id == solicitud.user_id:
             miFormulario1 = FormularioUpdate(request.POST or None)
             miFormulario2 =   request.FILES or None
@@ -166,19 +171,22 @@ def actualizar(request):
                     user_id=request.session.get('_auth_user_id')            
                 )
                 
-                if miFormulario2:                    
+                if miFormulario2:
+                    infForm.save()                     
                     for key in miFormulario2:
                         for j in range(len(nombresDocs)):
                             
                             if nombresDocs[j] == key:
+                                
                                 ruta = doc_file[j]
                                 fs = FileSystemStorage()
                                 fs.delete(ruta)
                                 Documentos.objects.filter(nombre = nombresDocs[j]).delete()
+
                                 data = [
-                                subirDocs(nombresDocs[j],request.FILES[nombresDocs[j]],request.POST['rutNit'])
+                                subirDocs2(nombresDocs[j],request.FILES[nombresDocs[j]],request.POST['rutNit'])
                                 ]
-                                infForm.save()                        
+                                                       
                                 for i in data:                
                                     infForm2 = Documentos(
                                     nombre = i[0],

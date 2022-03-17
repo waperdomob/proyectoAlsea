@@ -1,4 +1,5 @@
 import os
+import os.path
 from django.core.files.storage import FileSystemStorage 
 
 def handle_uploaded_file(name,f):
@@ -7,6 +8,7 @@ def handle_uploaded_file(name,f):
             destination.write(chunk)
 
 def subirDocs(nombre,doc,rut):
+
     postfix=doc.name.split('.')[1]
     
     fs = FileSystemStorage()
@@ -16,7 +18,7 @@ def subirDocs(nombre,doc,rut):
     return name1,url1
 
 def subirDocs2(nombre,doc,rut):
-    postfix=doc.name.split('.')[1]
+    postfix=os.path.splitext(doc.name)[1][1:]
     
     fs = FileSystemStorage()
     name1 = fs.save(nombre,doc)
