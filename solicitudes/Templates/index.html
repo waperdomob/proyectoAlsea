@@ -53,8 +53,8 @@
               </li>
               {% endif %}
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form action="{% url 'consultarSolicitud' %}" method="POST" class="d-flex">{% csrf_token %}
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="rutNit">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
           </div>
@@ -92,6 +92,7 @@
 </body>
 </html>
 {% load static %}
+    
     <script type="text/javascript" src="{% static 'js/select.js' %}"></script>  
     <script src="{% static 'js/funciones.js' %}"></script> 
     <script src="{% static 'libs/jquery-confirm/jquery-confirm.min.js' %}"></script>  

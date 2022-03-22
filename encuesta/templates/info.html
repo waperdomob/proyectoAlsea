@@ -1,0 +1,36 @@
+{%  extends "base.html" %}
+{%  block title %}
+    Información
+{%  endblock    %}
+
+{%  block content   %}
+
+   <div class="container contenedorRegistrar">
+        <br><br>
+        <h1 style="color: aliceblue;"><center>Encuesta de Satisfacción de Servicio. </center></h1> 
+        <div class="container cardContainer3">
+            <p class="textLabel">Buen día estimado colaborador.</p>
+            <p class="textLabel"> La encuesta tardará aproximadamente 7 minutos. <br> nosotros es muy importante conocer la percepción que tiene la operación acerca del apoyo que las areas de centro de soporte les brindan. </p>
+            <p class="textLabel">Lo anterior con el fin de contribuir y consolidar equipos altamente eficientes y eficaces para un  mejoramiento continuo.</p>
+
+            <strong class="textLabel">!Contamos con tu colaboración¡</strong>
+            
+            <h3 style="color: bisque;"><center>ASPECTOS A CALIFICAR</center></h3>
+            <ul class="list-group">
+                <li>
+                    <p class="textLabel">Soporte (Dar soluciones en el menor y mejor tiempo posible).</p>
+                </li>
+                <li>
+                    <p class="textLabel">Amabilidad y cordialidad (Trato brindado, respeto y consideración).</p>
+                </li>
+                <li>
+                   <p class="textLabel" > Efectividad de la solución brindada (Que las tareas que se lleven a cabo se realicen generando un alto impacto)</p>
+                </li>
+            </ul>
+            <a href="{% url 'encuesta'  %}" class="btn centrado2" style="text-decoration: none; color:white"> Realizar Encuesta</a>
+        </div>
+   </div>
+
+
+{%  endblock    %}
+    

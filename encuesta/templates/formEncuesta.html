@@ -1,0 +1,31 @@
+{%  extends "base.html" %}
+{%  block title %}
+    Encuesta
+{%  endblock    %}
+
+{%  block content   %}
+<br>
+    <h1 style="color: aliceblue;"><center>Encuesta de Satisfacción</center></h1>
+    <div class="container contenedorRegistrar">
+        <br><br>
+        <form action="" method="post">
+            {% csrf_token %}
+    
+            {% for row in form %}
+                <div class="form-group {% if row.errors %} has-error {% endif %}"> 
+                    <label class="textLabel" for="{{ row.html_name }}" > <!-- row.html_name imprime el nombre que django le da al campo -->
+                        {% if row.field.required %}<i class="fa fa-asterisk text-red"></i> {% endif %}{{ row.label_tag }} <!-- .label_tag es el valor del label que le diste en forms.py -->
+                    </label>
+                    <p style="color: azure;">{{ row.help_text }}</p>
+                    {{ row }} <!-- aqui imprimimos el campo -->
+                    <p class="help-block">{{ row.errors.as_text }} {{ row.field.css_classes }}</p>
+                </div>
+            {% endfor %}
+            <br>
+                <div>
+                    <button type="submit" class="btn centrado2" style="text-decoration: none; color:white">Enviar!</button>
+                </div>
+                <br><br>
+        </form>
+    </div>
+{%  endblock    %}

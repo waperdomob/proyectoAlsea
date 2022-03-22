@@ -1,0 +1,97 @@
+/* backgroud fondo en general  */
+
+body {
+     
+    /* background: #153786; */
+    background-image: linear-gradient(to right, #153786, #0a5eda, #153786, #153786, #153786, #153786, #153786, #153786, #153786, #153786, #3e68e2, #153786);
+
+    
+    
+}
+html {
+    height: 100%;
+    margin: 0px;
+  }
+  
+  .row {
+    height: 100%;
+  }
+
+  footer {
+    background-color: #142238;
+    margin: auto;
+    overflow: hidden;
+  }
+  
+  .content-footer {
+    
+    height: 20%;
+    margin-top: 100px;
+  }
+  .button-center{
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    -ms-transform: translateY(-50%);
+    transform: translateX(600px);
+  }
+
+  
+  .cardContainer{
+    
+    
+    justify-content: center;
+    align-items:flex-start;
+    text-align: center;
+
+
+  }
+  .cardContainer3{
+    
+    grid-gap: 50px 20px;
+    height: 90%;
+    margin: 40px;
+    width: 90%;
+    border: 30px;
+   
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px 5px #ec760750;
+
+  }
+  .centrado2 {
+    width: 110px; /* Para que no se rompa en dos líneas, y lo translade tal cual. */
+    margin-left: 45%;
+    transform: translateX(-50%);
+    transform: translateY(0%);
+    border: 2px solid #f8f6f4f6;
+    color: black;   
+    background-color: #153786;
+
+
+  }
+  .containerDocs{
+    display: grid;
+    grid-gap: 100px 20px;
+  }
+  .contenedor{
+    background-image:url("../img/ALSEA.png"), url("../img/figura_familiares.svg"), url("../img/figura_rapida.svg"),url("../img/gaseosa.svg"), url("../img/figura_casual.svg"), url("../img/figura_sandwich.svg"); 
+    background-position: 50% 15%, 0% 10%, 100% 10%, 50% 60%, 0% 60%, 100% 60%;
+    background-repeat: no-repeat, no-repeat, no-repeat,no-repeat, no-repeat, no-repeat; 
+    background-size: 100px 100px,100px 100px,100px 100px,100px 100px,100px 100px,100px 100px;
+  }
+  .contenedor2{
+    background-image:url("../img/ALSEA.png"), url("../img/figura_familiares.svg"), url("../img/figura_rapida.svg"),url("../img/gaseosa.svg"), url("../img/figura_casual.svg"), url("../img/figura_sandwich.svg"); 
+    background-position: 20% 90%, 0% 10%, 100% 10%, 35% 90%, 0% 60%, 100% 60%;
+    background-repeat: no-repeat, no-repeat, no-repeat,no-repeat, no-repeat, no-repeat; 
+    background-size: 100px 100px,100px 100px,100px 100px,100px 100px,100px 100px,100px 100px;
+  }
+  .contenedorRegistrar{
+    background-image:url("../img/ALSEA.png"), url("../img/figura_rapida.svg"),url("../img/gaseosa.svg"), url("../img/figura_casual.svg"), url("../img/figura_sandwich.svg"); 
+    background-position: 10% 0%, 100% 0%, 22% 100%, 5% 100%, 80% 100%;
+    background-repeat: no-repeat, no-repeat, no-repeat,no-repeat, no-repeat, no-repeat; 
+    background-size: 100px 100px,100px 100px,100px 100px,100px 100px,100px 100px;
+  }
+
+  .fotterlist{
+    padding-right: 200px;
+  }

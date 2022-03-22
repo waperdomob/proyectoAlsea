@@ -6,6 +6,19 @@ Registro de Solicitudes
 {%  block content   %}
 <br><br>
 <h2 style="color: #eff2f3;"><center>FORMATO DE REGISTRO</center></h2>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="textLabel">
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error:
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}¡Bien!:
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}Advertencia:
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}Aviso: {% endif %}
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
 <div class="container contenedorRegistrar">
     <form action="/registrarSolicitud/" method="POST" enctype="multipart/form-data">{% csrf_token %}
         <div class="row">

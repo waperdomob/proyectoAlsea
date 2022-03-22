@@ -5,30 +5,18 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.middleware import *
 from django.http import HttpResponseRedirect
-from django.template import Template,Context
-from django.template.loader import get_template
+from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.core.files.storage import default_storage, FileSystemStorage
-
-#from django.urls import reverse_lazy
-#from django.contrib.auth.views import PasswordResetView
-#from django.contrib.messages.views import SuccessMessageMixin
 
 from solicitudes.models import Documentos, Marca, Solicitudes
 
 from solicitudes.forms import FormularioDocs, FormularioDocs2, FormularioSolicitud, FormularioUpdate
 from solicitudes.funcions.funcions import handle_uploaded_file,subirDocs, subirDocs2
 
-""" lass ResetPasswordView(SuccessMessageMixin, PasswordResetView):
-    template_name = 'users/password_reset.html'
-    email_template_name = 'users/password_reset_email.html'
-    subject_template_name = 'users/password_reset_subject'
-    success_message = "We've emailed you instructions for setting your password, " \
-                      "if an account exists with the email you entered. You should receive them shortly." \
-                      " If you don't receive an email, " \
-                      "please make sure you've entered the address you registered with, and check your spam folder."
-    success_url = reverse_lazy('index')
- """
+def handle_not_found(request,exception):
+    return render(request,'not-found.html')
+
 def index(request):   
     if request.user.is_authenticated:
         return render(request,"consultarS.html")
@@ -96,11 +84,13 @@ def registrarSolicitud(request):
             
             return render(request,"consultarS.html")
         else:
-            
+            messages.error(request, "Hubo un error al guardar la solicitud")
+
             miFormulario1 = FormularioSolicitud()
             miFormulario2 = FormularioDocs()
             miFormulario3 = FormularioDocs2()
             return render(request,"registrarS.html",{'form1':miFormulario1,'form2':miFormulario2,'form3':miFormulario3})
+    
 
 @login_required
 def consultarSolicitud(request):
@@ -116,9 +106,13 @@ def consultarSolicitud(request):
                 Docs = Documentos.objects.filter(solicitudes_rutNit_id = rut)
                 return render(request,"solicitud.html",{"datos":solicitud,"docs": Docs})
             else:
-                return HttpResponseRedirect('/consultarS/')
+
+                messages.error(request, "Hubo un error al consultar la solicitud")
+                return render(request,'consultarS.html')
+                
 
         except Solicitudes.DoesNotExist:
+
             return HttpResponseRedirect('/consultarS/')
 
 @login_required
@@ -151,9 +145,8 @@ def actualizar(request):
         for object in Docs:
             nombresDocs.append(object.nombre)
             idsDocs.append(object.id)
-            doc_file.append('C:/Alsea1/'+str(object.doc_file))
+            doc_file.append("C:/Alsea/Alsea1"+str(object.doc_file))
 
-        print(doc_file)
         if user_id == solicitud.user_id:
             miFormulario1 = FormularioUpdate(request.POST or None)
             miFormulario2 =   request.FILES or None
@@ -180,7 +173,7 @@ def actualizar(request):
                                 
                                 ruta = doc_file[j]
                                 fs = FileSystemStorage()
-                                fs.delete(ruta)
+                                default_storage.delete(ruta)
                                 Documentos.objects.filter(nombre = nombresDocs[j]).delete()
 
                                 data = [
@@ -196,7 +189,10 @@ def actualizar(request):
                                     infForm2.save()
                 else:
                     infForm.save()
+                Docs = Documentos.objects.filter(solicitudes_rutNit_id = solicitud_id)
                 return render(request,"solicitud.html",{"datos":infForm,"docs": Docs})
         else:
+            
+            messages.error(request, "Hubo un error al consultar la solicitud")
             return HttpResponseRedirect('/consultarS/')
 

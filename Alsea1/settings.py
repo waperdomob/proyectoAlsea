@@ -29,7 +29,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Alsea1',
     'solicitudes',
+    'encuesta',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'Alsea1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Alsea1/Alsea1/templates'],
+        'DIRS': ['C:Alsea/Alsea1/Alsea1/templates'],
         'DIRS': ['./templates',],
         'APP_DIRS': True,
         'OPTIONS': {

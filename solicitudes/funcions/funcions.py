@@ -19,9 +19,9 @@ def subirDocs(nombre,doc,rut):
 
 def subirDocs2(nombre,doc,rut):
     postfix=os.path.splitext(doc.name)[1][1:]
-    
+    file_name = os.path.splitext(nombre)[0]
     fs = FileSystemStorage()
-    name1 = fs.save(nombre,doc)
+    name1 = fs.save(file_name+'.'+postfix,doc)
     url1 = fs.url(name1)
     
     return name1,url1

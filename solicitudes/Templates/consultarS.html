@@ -5,16 +5,31 @@ Consultar de Solicitudes
 
 <br><br><br>
 {%  block content   %}
-    <br><br>
+<br><br>
     
     <h2 style="color: #f7f8f8;"><center>Consulte si la Solicitud esta completa</center></h2>
-    <div class="container ">        
+    <div class="container ">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="textLabel">
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error:
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}¡Bien!:
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}Advertencia:
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}Aviso: {% endif %}
+                {{ message }}
+            </li>
+            {% endfor %}
+        </ul>
+        <br><br> 
+        {% endif %} 
+              
         <div class="container">
             <form action="{% url 'consultarSolicitud' %}" method="POST">
                 {% csrf_token %}
                 <div class="mb-3  contCon" role="alert" >
                     <label for="" class="form-label">Ingrese el número de Rut o Nit</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" name="rutNit">
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" name="rutNit" required>
                     <button type="submit" class="btn btn-primary mt-3"
                         style="text-decoration: none; color:white">
                         Consultar
