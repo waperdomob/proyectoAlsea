@@ -8,6 +8,19 @@
    <div class="container contenedorRegistrar">
         <br><br>
         <h1 style="color: aliceblue;"><center>Encuesta de Satisfacción de Servicio. </center></h1> 
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="textLabel">
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error:
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}¡Bien!:
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}Advertencia:
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}Aviso: {% endif %}
+                {{ message }}
+            </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
         <div class="container cardContainer3">
             <p class="textLabel">Buen día estimado colaborador.</p>
             <p class="textLabel"> La encuesta tardará aproximadamente 7 minutos. <br> nosotros es muy importante conocer la percepción que tiene la operación acerca del apoyo que las areas de centro de soporte les brindan. </p>

@@ -37,14 +37,23 @@ html {
   }
 
   
-  .cardContainer{
-    
-    
+  .cardContainer2{  
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items:flex-start;
+    align-items: center;
     text-align: center;
-
-
+    height: 15rem;
+    border-radius: 5px;    
+    box-shadow: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-family: 'Baloo Paaji 2', cursive;
+  }
+  .grid-container {
+    
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    font-size: 1.2em;
   }
   .cardContainer3{
     
@@ -63,8 +72,7 @@ html {
     margin-left: 45%;
     transform: translateX(-50%);
     transform: translateY(0%);
-    border: 2px solid #f8f6f4f6;
-    color: black;   
+    border: 2px solid #f8f6f4f6; 
     background-color: #153786;
 
 
@@ -86,6 +94,7 @@ html {
     background-size: 100px 100px,100px 100px,100px 100px,100px 100px,100px 100px,100px 100px;
   }
   .contenedorRegistrar{
+    
     background-image:url("../img/ALSEA.png"), url("../img/figura_rapida.svg"),url("../img/gaseosa.svg"), url("../img/figura_casual.svg"), url("../img/figura_sandwich.svg"); 
     background-position: 10% 0%, 100% 0%, 22% 100%, 5% 100%, 80% 100%;
     background-repeat: no-repeat, no-repeat, no-repeat,no-repeat, no-repeat, no-repeat; 

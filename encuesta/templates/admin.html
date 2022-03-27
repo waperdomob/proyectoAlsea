@@ -1,0 +1,58 @@
+{%  extends "base.html" %}
+{%  block title %}
+    Información
+{%  endblock    %}
+
+{%  block content   %}
+
+    <div class="container contenedorRegistrar">
+        <br><br>
+        <h1 style="color: aliceblue;"><center>Modulo Administrativo </center></h1>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li class="textLabel">
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error:
+                    {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}¡Bien!:
+                    {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}Advertencia:
+                    {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}Aviso: {% endif %}
+                    {{ message }}
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <div class="container cardContainer3">
+            <p class="textLabel">Desde este modulo podrá realizar diferentes operaciones que requiera para ver las estadisticas de las encuestas.</p>
+            
+            <h3 style="color: bisque;"><center>ASPECTOS A CALIFICAR</center></h3>
+            <ul class="list-group">
+                <li>
+                    <p class="textLabel">Soporte (Dar soluciones en el menor y mejor tiempo posible).</p>
+                </li>
+                <li>
+                    <p class="textLabel">Amabilidad y cordialidad (Trato brindado, respeto y consideración).</p>
+                </li>
+                <li>
+                   <p class="textLabel" > Efectividad de la solución brindada (Que las tareas que se lleven a cabo se realicen generando un alto impacto)</p>
+                </li>
+            </ul>
+            <br>
+            <div class="row row-cols-3">
+                <div class="col-lg-3">
+                    <a href="{% url 'encuesta'  %}" class="btn centrado2" style="text-decoration: none; color:white"> Resultados</a>
+                </div> 
+                <div class="col-lg-3">
+                    <a href="{% url 'encuesta'  %}" class="btn centrado2" style="text-decoration: none; color:white"> Resultados</a>
+                </div> 
+                <div class="col-lg-3">
+                    <a href="{% url 'encuesta'  %}" class="btn centrado2" style="text-decoration: none; color:white"> Resultados</a>
+                </div>   
+                <br><br>
+            </div>
+
+        </div>
+        <br><br>
+        <br><br> 
+    </div>
+    
+{%  endblock    %}

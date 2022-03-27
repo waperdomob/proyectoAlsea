@@ -48,6 +48,7 @@ def registrarSolicitud(request):
         miFormulario2 = FormularioDocs(request.POST, request.FILES)
         miFormulario3 = FormularioDocs2(request.POST, request.FILES)
         
+        
         if miFormulario1.is_valid():
             infForm = Solicitudes(
                 rutNit = miFormulario1.cleaned_data['rutNit'],
@@ -81,10 +82,26 @@ def registrarSolicitud(request):
                     solicitudes_rutNit = Solicitudes.objects.get(rutNit=miFormulario1.cleaned_data['rutNit'])
                 )
                 infForm2.save()
-            
-            return render(request,"consultarS.html")
+
+            if miFormulario3:
+                    files = request.FILES.getlist('otrosDocs')
+                    for file in files:
+                        obj = Documentos(
+                            nombre = 'Documentos adicionales',
+                            doc_file = file,
+                            solicitudes_rutNit = Solicitudes.objects.get(rutNit=miFormulario1.cleaned_data['rutNit'])
+                        )
+                        obj.save()
+                       
+
+            miFormulario1 = FormularioSolicitud()
+            miFormulario2 = FormularioDocs()
+            miFormulario3 = FormularioDocs2()
+            messages.success(request, 'Tu Solicitud ha sido creada. Para verla y editarla dar click en el enlace Consultar Solicitudes')
+
+            return render(request,"registrarS.html",{'form1':miFormulario1,'form2':miFormulario2,'form3':miFormulario3})
         else:
-            messages.error(request, "Hubo un error al guardar la solicitud")
+            messages.error(request, "Hubo un error al guardar la solicitud, intenta nuevamente")
 
             miFormulario1 = FormularioSolicitud()
             miFormulario2 = FormularioDocs()
@@ -107,7 +124,7 @@ def consultarSolicitud(request):
                 return render(request,"solicitud.html",{"datos":solicitud,"docs": Docs})
             else:
 
-                messages.error(request, "Hubo un error al consultar la solicitud")
+                messages.error(request, "Hubo un error al consultar la solicitud: Solicitud no asociada al usuario")
                 return render(request,'consultarS.html')
                 
 

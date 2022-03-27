@@ -26,105 +26,75 @@ class Ciudades(models.Model):
         return self.ciudad
 
 class Encuestas(models.Model):
-    nombre = models.CharField(max_length=45)
-    cargo= models.CharField(max_length=45)
+    
+    nombre = models.CharField(max_length=55)
+    cargo= models.CharField(max_length=55)
     marca = models.ForeignKey(MarcasTiendas,null=False, on_delete=models.CASCADE)
     ciudad = models.ForeignKey(Ciudades,null=False, on_delete=models.CASCADE)
-    tienda = models.CharField(max_length=45, primary_key=CharField)
+    tienda = models.CharField(max_length=55)
     fecha = models.DateField()
 
-    soporteRHC = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente:')
+    soporteRHC = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='(Contratación)')
+    amabilidadRHC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
+    efectividadRHC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
 
-    amabilidadRHC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente:')
+    soporteRHN = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='(Nomina)')
+    amabilidadRHN = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
+    efectividadRHN = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
 
-    efectividadRHC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente:')
+    soporteCC = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='(Trasferencia de ordenes y servicio al usuario final)')
+    amabilidadCC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='(Trasferencia...)')
+    efectividadCC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
 
-    soporteRHN = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
+    soporteGA = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='(Arriendos y vigilancia)')
+    amabilidadGA = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
+    efectividadGA = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
 
-    amabilidadRHN = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
+    soporteFC = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='(Cuentas por pagar)')
+    amabilidadFC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
+    efectividadFC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
 
-    efectividadRHN = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
+    soporteFV = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='(Ventas POS y Cuentas por cobrar)')
+    amabilidadFV = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
+    efectividadFV = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
 
-    soporteCC = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
+    soporteFT = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='(Tesorería: Pago de cajas menores y recolección de dinero PROSEGUR)')
+    amabilidadFT = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='(Tesorería: Pago de cajas menores y...)')
+    efectividadFT = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='(Tesorería: Pago de cajas menores y...)')
 
-    amabilidadCC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
+    soporteSSCE = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='(Entrega de insumos por parte de proveedores; NO AXIONLOG)')
+    amabilidadSSCE = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='(Entrega de insumos por parte de proveedores ...)')
+    efectividadSSCE = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='(Entrega de insumos ...)')
 
-    efectividadCC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-    
-    soporteGA = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
+    soporteSSCA = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='(AXIONLOG)')
+    amabilidadSSCA = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
+    efectividadSSCA = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
 
-    amabilidadGA = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
+    soporteSSCC = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='(Compras)')
+    amabilidadSSCC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
+    efectividadSSCC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1') 
 
-    efectividadGA = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
+    soporteMC = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='(Comunicación de campañas...)')
+    amabilidadMC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
+    efectividadMC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
 
-    soporteFC = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
+    soporteHSEQ = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='')
+    amabilidadHSEQ = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='')
+    efectividadHSEQ = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='')
 
-    amabilidadFC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
+    soporteLEGAL = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='')
+    amabilidadLEGAL = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='')
+    efectividadLEGAL = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='')
 
-    efectividadFC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
+    soporteTEC = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='(Sistema de venta POS...')
+    amabilidadTEC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
+    efectividadTEC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
 
-    soporteFV = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    amabilidadFV = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    efectividadFV = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    soporteFT = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    amabilidadFT = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    efectividadFT = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    soporteSSCE = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    amabilidadSSCE = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    efectividadSSCE = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    soporteSSCA = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    amabilidadSSCA = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    efectividadSSCA = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    soporteSSCC = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    amabilidadSSCC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    efectividadSSCC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    soporteMC = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    amabilidadMC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    efectividadMC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    soporteHSEQ = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    amabilidadHSEQ = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    efectividadHSEQ = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    soporteLEGAL = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    amabilidadLEGAL = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    efectividadLEGAL = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    soporteTEC = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    amabilidadTEC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    efectividadTEC = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente')
-
-    soporteAUD = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente:')
-
-    amabilidadAUD = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente:')
-
-    efectividadAUD = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1', help_text='Califica de 1 a 5, siendo 1 insuficiente y 5 sobresaliente:')
+    soporteAUD = models.CharField(max_length=1, choices=CALIFICACION,      blank=True, default='1', help_text='(Mesa de ayuda)')
+    amabilidadAUD = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
+    efectividadAUD = models.CharField(max_length=1, choices=CALIFICACION, blank=True, default='1')
 
     comentario = models.CharField(max_length=100)
 
-    
-
+    user = models.ForeignKey(User,null=True, on_delete=models.CASCADE)
     
