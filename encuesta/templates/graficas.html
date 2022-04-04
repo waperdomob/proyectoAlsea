@@ -1,0 +1,13 @@
+{%  extends "base.html" %}
+{%  block title %}
+    Graficas
+{%  endblock    %}
+
+{%  block content   %}
+{% if datos %}
+    <b>Encuestas Dataframe</b>
+    {{datos|safe}}
+{%  else %}
+    <h3>No data</h3>
+{% endif %}<br>
+{%  endblock    %}

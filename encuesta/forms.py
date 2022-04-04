@@ -8,6 +8,12 @@ import datetime
 
 from .models import Encuestas, MarcasTiendas, Ciudades
 
+CHART_CHOICES = (
+    ('#1','Bar chart'),
+    ('#2','Pie chart'),
+    ('#3','Line chart'),
+
+)
 class MarcasForm(forms.ModelForm):
     class Meta:
         model: MarcasTiendas
@@ -17,6 +23,7 @@ class CiudadesForm(forms.ModelForm):
     class Meta:
         model: Ciudades
         fields = ('ciudad',)
+
 
 class EncuestaForm(forms.ModelForm):
     #required_css_class = 'textLabel'
@@ -32,11 +39,11 @@ class EncuestaForm(forms.ModelForm):
             'tienda':'Nombre de la tienda donde labora',
             'fecha':'Fecha  Actual',
             'soporteRHC':'Soporte del área de RECURSOS HUMANOS',
-            'amabilidadRHC':'Amabilidad y cordialidad del área de RECURSOS HUMANOS',
-            'efectividadRHC':'Efectividad de la solución brindada del área de RECURSOS HUMANOS',
+            'amabilidadRHC':'Amabilidad y cordialidad del área de RH',
+            'efectividadRHC':'Efectividad de la solución brindada del área de RH',
             'soporteRHN':'Soporte del área de RECURSOS HUMANOS',
-            'amabilidadRHN':'Amabilidad y cordialidad del área de RECURSOS HUMANOS',
-            'efectividadRHN':'Efectividad de la solución brindada del área de RECURSOS HUMANOS', 
+            'amabilidadRHN':'Amabilidad y cordialidad del área de RH',
+            'efectividadRHN':'Efectividad de la solución brindada del área de RH', 
             'soporteCC':'Soporte del área de CONTACT CENTER ',
             'amabilidadCC':'Amabilidad y cordialidad del área de CONTACT CENTER',
             'efectividadCC':'Efectividad de la solución brindada del área de CONTACT CENTER', 
@@ -57,17 +64,17 @@ class EncuestaForm(forms.ModelForm):
             'efectividadSSCE':'Efectividad de la solución brindada del área de SAC SUPPLY CHAIN',
             'soporteSSCA':'Soporte del área de SAC SUPPLY CHAIN',
             'amabilidadSSCA':'Amabilidad y cordialidad del área de SAC SUPPLY CHAIN',
-            'efectividadSSCA':'Efectividad de la solución brindada del área de SAC SUPPLY CHAIN',
+            'efectividadSSCA':'Efectividad de la solución brindada del área de SSC',
             'soporteSSCC':'Soporte del área de SAC SUPPLY CHAIN',
             'amabilidadSSCC':'Amabilidad y cordialidad del área de SAC SUPPLY CHAIN',
-            'efectividadSSCC':'Efectividad de la solución brindada del área de SAC SUPPLY CHAIN',
+            'efectividadSSCC':'Efectividad de la solución brindada del área de SSC',
             'soporteMC':'Soporte del área de MARKETING',
             'amabilidadMC':'Amabilidad y cordialidad del área de MARKETING',
             'efectividadMC':'Efectividad de la solución brindada del área de MARKETING', 
-            'soporteHSEQ':'Soporte del área de HSEQ',
+            'soporteHSEQ':'__________________  Soporte del área de HSEQ',
             'amabilidadHSEQ':'Amabilidad y cordialidad del área de HSEQ',
             'efectividadHSEQ':'Efectividad de la solución brindada del área de HSEQ',
-            'soporteLEGAL':'Soporte del área LEGAL',
+            'soporteLEGAL':'__________________ Soporte del área LEGAL',
             'amabilidadLEGAL':'Amabilidad y cordialidad del área LEGAL',
             'efectividadLEGAL':'Efectividad de la solución brindada del área LEGAL',
             'soporteTEC':'Soporte del área TECNOLOGIA ',
@@ -134,3 +141,7 @@ class EncuestaForm(forms.ModelForm):
             'comentario': forms.TextInput(attrs={'class':'form-control'}),
             
         }
+
+class FiltrarResultados(forms.Form):
+    required_css_class = 'textLabel'
+    Grafica = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}),choices=CHART_CHOICES)

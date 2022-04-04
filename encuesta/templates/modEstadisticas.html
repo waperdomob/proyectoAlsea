@@ -1,0 +1,86 @@
+{%  extends "base.html" %}
+{%  block title %}
+    Información
+{%  endblock    %}
+
+{%  block content   %}
+<br><br>
+<div class="container ">
+    <div class="container contenedorRegistrar">
+        <form action="{% url 'estadisticas'  %}" method="post">{% csrf_token %}
+
+            <h2 style="color: aliceblue;"><center>Modulo de Estadisticas</center></h2>
+            <br><br>
+            <p class="textLabel">Seleccione los parametros que quiere filtrar para las estadisticas</p>
+            <br>
+            <div class="row">
+                <div class="col-sm-1 mt-3"></div>
+                <div class="col-sm-10 mt-3">
+                    <label class="textLabel" for="">Seleccione la ciudad: </label>        
+                    <select class="form-control" name="ciudad" id="">
+                        <option value="">--------</option>
+                        {% for object in ciudades %}
+                            <option value="{{object.id}}">{{object.ciudad}}</option>
+                        {% endfor %}    
+                    </select>
+                    <label class="textLabel" for="">Seleccione la tienda: </label>        
+                    <select class="form-control" name="tienda" id="">
+                        <option value="">--------</option>
+                        {% for object in locales %}
+                            <option value="{{object.tienda}}">{{object.tienda}}</option>
+                        {% endfor %}    
+                    </select>  
+                    <label class="textLabel" for="">Seleccione el cargo: </label>        
+                    <select class="form-control" name="cargo" id="">
+                        <option value="">--------</option>
+                        {% for object in cargos %}
+                            <option value="{{object.cargo}}">{{object.cargo}}</option>
+                        {% endfor %}    
+                    </select> 
+                    <label class="textLabel" for="">Seleccione la marca: </label>        
+                    <select class="form-control" name="marca" id="">
+                        <option value="">--------</option>
+                        {% for object in tiendas %}
+                            <option value="{{object.id}}">{{object.marca}}</option>
+                        {% endfor %}    
+                    </select> 
+                    {{form}}
+                    
+                </div><br><br><br>
+                <button type="submit" class="btn btn-primary btn-lg mt-3">Enviar</button>   
+            </div>
+            
+        </form>
+    </div>
+
+    <div class="container">
+        {% if datos %}
+        <div class="row">
+            <div class="col-lg-6  p-5">
+                <h2 style="color: #eff2f3;"><center>Encuestas</center></h2><br>
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    {% for object in datos2 %}
+                    {{object|safe}}                
+                    <br><br>
+                {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-6  p-5">
+                <h2 style="color: #eff2f3;"><center>Promedio</center></h2><br>
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    {% for object in chart %}
+                    <img src="data:image/png;base64, {{object|safe}} " alt="">                
+                        <br><br>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    
+        {%  else %}
+        <br><br>    
+        <h2 style="color: #eff2f3;"><center>No Data</center></h2><br
+        {% endif %}<br>
+    </div>
+</div>
+<br><br>
+{%  endblock    %}

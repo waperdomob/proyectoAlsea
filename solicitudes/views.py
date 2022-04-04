@@ -47,7 +47,7 @@ def registrarSolicitud(request):
         miFormulario1 = FormularioSolicitud(request.POST)
         miFormulario2 = FormularioDocs(request.POST, request.FILES)
         miFormulario3 = FormularioDocs2(request.POST, request.FILES)
-        
+        files = request.FILES.getlist('otrosDocs')
         
         if miFormulario1.is_valid():
             infForm = Solicitudes(
@@ -83,12 +83,11 @@ def registrarSolicitud(request):
                 )
                 infForm2.save()
 
-            if miFormulario3:
-                    files = request.FILES.getlist('otrosDocs')
+            if files:                    
                     for file in files:
                         obj = Documentos(
-                            nombre = 'Documentos adicionales',
-                            doc_file = file,
+                            nombre = 'Documentos adicionales'+str(miFormulario1.cleaned_data['rutNit']),
+                            doc_file = 'media/'+str(file),
                             solicitudes_rutNit = Solicitudes.objects.get(rutNit=miFormulario1.cleaned_data['rutNit'])
                         )
                         obj.save()

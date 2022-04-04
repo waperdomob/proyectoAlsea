@@ -28,7 +28,7 @@ class Solicitudes(models.Model):
 class Documentos(models.Model):
     
     nombre = models.CharField(max_length=100)
-    doc_file = models.FileField(upload_to='media/',default="")    
+    doc_file = models.FileField(upload_to='',default="")    
     solicitudes_rutNit = models.ForeignKey(Solicitudes,null=False, on_delete=models.CASCADE)
     
     def __str__(self):
