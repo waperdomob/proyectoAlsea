@@ -1,22 +1,21 @@
 
-from turtle import color
+from re import template
 from django.urls import reverse
 import datetime
-from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.middleware import *
-from django.views.generic import CreateView
+from django.views.generic import CreateView,ListView
 from django.http import Http404, HttpResponseRedirect
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
-import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np
 from pymysql import NULL
 from encuesta.utils import get_ciudad_from_id,get_marca_from_id, get_chart,get_graph
 from encuesta.funcions.funcions import filtrar,pasar_dicc
 from encuesta.forms import *
 from encuesta.models import Encuestas, Ciudades, MarcasTiendas
+from reporte.models import Reporte
+from reporte.forms import *
 # Create your views here.
 
 def index(request):
@@ -39,15 +38,21 @@ class crearEncuesta(CreateView):
     def get_success_url(self):
         return reverse('encuesta:inicio')
 
+class reportListView(ListView):
+    model = Reporte
+    template_name = 'reports/reporte_list.html'
 
 @login_required
 def registrarEncuesta(request):
     user_id=int(request.session.get('_auth_user_id'))
     if request.method=="POST":
         miEncuesta = EncuestaForm(request.POST)
+        for object in miEncuesta:
+            print(object)
         if miEncuesta.is_valid():
             encuesta = miEncuesta.save(commit=False)
             encuesta.user_id = user_id
+  
             miEncuesta.save()
             messages.success(request, 'Tu Respuesta fue enviada')
             return render(request, 'info.html')
@@ -57,20 +62,23 @@ def registrarEncuesta(request):
 
 @login_required
 def estadisticas(request):
-    user_id=int(request.session.get('_auth_user_id'))
-    titulos=['RH_Contratación','RH_Nomina','Contac_center','Gerencia_Administrativa','Finanzas_Cpp','Finanzas_Vposs','Finanzas_tes' ,'Sac_supli_chain','Sac_supli_chain_AX','Sac_supli_chain_CP','Marketing','Hseq','Legal','Tecnologia','Auditoria']  
-    form = FiltrarResultados()
-    locales = Encuestas.objects.only('tienda').distinct('tienda')
-    cargos = Encuestas.objects.only('cargo').distinct('cargo')
-    ciudades= Ciudades.objects.all()
-    tiendas = MarcasTiendas.objects.all()
-    df1 = None
-    df2 = [None]*14
-    prom = [None]*14
-    chart= [None]*14
-    enc_sep=[]
-    encuestas=None
+    
     if request.user.is_superuser:
+        report_form = ReporteForm()
+        user_id=int(request.session.get('_auth_user_id'))
+        titulos=['RH_Contratación','RH_Nomina','Contac_center','Gerencia_Administrativa','Finanzas_Cpp','Finanzas_Vposs','Finanzas_tes' ,'Sac_supli_chain','Sac_supli_chain_AX','Sac_supli_chain_CP','Marketing','Hseq','Legal','Tecnologia','Auditoria']  
+        filtrar_form = FiltrarResultados()
+        locales = Encuestas.objects.only('tienda').distinct('tienda')
+        cargos = Encuestas.objects.only('cargo').distinct('cargo')
+        ciudades= Ciudades.objects.all()
+        tiendas = MarcasTiendas.objects.all()
+        df1 = None
+        df2 = [None]*15
+        prom = [None]*15
+        chart= [None]*15
+        enc_sep=[]
+        encuestas=None
+        no_data = None
         if request.method=="POST":
 
             chart_type = request.POST.get('Grafica')
@@ -80,14 +88,11 @@ def estadisticas(request):
                     'tienda':request.POST['tienda'],
                     'cargo':request.POST['cargo'],
                     'marca': request.POST['marca']
-                }
-                print(filtros)            
+                }         
                 encuestas = filtrar(filtros)
                 
             else:
                 encuestas = Encuestas.objects.all()      
-            
-            #encuestas = filtrar(filtros)        
             
             if len(encuestas)>0:
                 obj= pasar_dicc(encuestas)
@@ -101,20 +106,17 @@ def estadisticas(request):
                     enc_sep[i]= pd.DataFrame(obj[i])
                     prom[i] = enc_sep[i].mean()
                     chart[i] = get_chart(chart_type, prom[i],titulos[i])
-                    
 
                 for i in range(len(obj)):
-                    #print(enc_sep[i])
-                    print(prom[i])
                     df2[i] = enc_sep[i].style.set_table_attributes('class="table-wrapper-scroll-y mi-table", id= "dtVerticalScrollExample"').set_caption(titulos[i]).render()
                 
                 df1 = df1.to_html()
-
                 
             else:
-                print("no data")
+                no_data = 'No hay datos disponibles'
                 
         context = {
+            'no_data':no_data,
             'datos':df1,
             'datos2':df2,
             'prom':prom,
@@ -123,9 +125,20 @@ def estadisticas(request):
             'cargos':cargos,
             'ciudades':ciudades,
             'tiendas':tiendas,
-            'form':form,
+            'filtrar_form':filtrar_form,
+            'report_form': report_form,
             'chart':chart,
             }
         return render(request,'modEstadisticas.html', context)
     else:
         return render(request, 'info.html')
+
+
+def eliminarReporte(request,pk):
+    if request.user.is_superuser:
+        reporte = Reporte.objects.get(id=pk)
+        print(reporte)
+        context = {
+            'reportes': reporte,
+        }
+        return render(request, 'reportes.html', context)

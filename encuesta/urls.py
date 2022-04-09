@@ -10,6 +10,8 @@ urlpatterns = [
     path('inicio/',views.index, name='inicio'),
     path('encuesta/',views.crearEncuesta.as_view(), name='encuesta'),
     path('estadisticas/',views.estadisticas, name='estadisticas'),
+    path('eliminarReporte/<int:pk>',views.eliminarReporte, name='eliminarReporte'),
+    path('reportes/',views.reportListView.as_view(), name='reportes'),
     path('registrarEncuesta/', views.registrarEncuesta, name='registrarEncuesta'),    
     #path('success/', views.SuccessView.as_view(), name='success')
 ]

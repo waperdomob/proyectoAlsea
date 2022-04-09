@@ -1,6 +1,7 @@
 from django.contrib import admin
 from solicitudes.models import Marca,Documentos,Solicitudes
 from encuesta.models import MarcasTiendas, Ciudades, Encuestas
+from reporte.models import Reporte
 
 
 class solicitudesAdmin(admin.ModelAdmin):
@@ -21,9 +22,13 @@ class CiudadesAdmin(admin.ModelAdmin):
 class EncuestasAdmin(admin.ModelAdmin):
     list_display=("id","nombre","cargo","tienda","user_id")
 
+class ReportesAdmin(admin.ModelAdmin):
+    list_display=("id","nombre","documento","user_id")
+
 admin.site.register(Solicitudes,solicitudesAdmin)
 admin.site.register(Marca,marcaAdmin)
 admin.site.register(Documentos,documentosAdmin)
 admin.site.register(Encuestas,EncuestasAdmin)
 admin.site.register(MarcasTiendas,marcaTiendaAdmin)
 admin.site.register(Ciudades,CiudadesAdmin)
+admin.site.register(Reporte,ReportesAdmin)

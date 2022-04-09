@@ -5,17 +5,17 @@ from re import A
 from tkinter import CASCADE
 from django.db import models
 from django.db.models import Avg
-from django.forms import CharField
+from django.forms import CharField, DateField
 from django.contrib.auth.models import User
 from django.db.models.functions import Round
 
 # Create your models here.
 CALIFICACION = (
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4'),
-        ('5', '5'),
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
 
     )
 
@@ -87,12 +87,12 @@ class Encuestas(models.Model):
     fecha = models.DateField()
 
     soporteRHC = models.IntegerField(choices=CALIFICACION,default='1',      blank=False, help_text='(Contratación)')
-    amabilidadRHC = models.IntegerField( choices=CALIFICACION, blank=True, default='1')
-    efectividadRHC = models.IntegerField( choices=CALIFICACION, blank=True, default='1')
+    amabilidadRHC = models.IntegerField( choices=CALIFICACION, blank=True, default='1', help_text='(Contratación)')
+    efectividadRHC = models.IntegerField( choices=CALIFICACION, blank=True, default='1', help_text='(Contratación)')
 
     soporteRHN = models.IntegerField( choices=CALIFICACION,      blank=True, default='1', help_text='(Nomina)')
-    amabilidadRHN = models.IntegerField( choices=CALIFICACION, blank=True, default='1')
-    efectividadRHN = models.IntegerField( choices=CALIFICACION, blank=True, default='1')
+    amabilidadRHN = models.IntegerField( choices=CALIFICACION, blank=True, default='1', help_text='(Nomina)')
+    efectividadRHN = models.IntegerField( choices=CALIFICACION, blank=True, default='1', help_text='(Nomina)')
 
     soporteCC = models.IntegerField( choices=CALIFICACION,      blank=True, default='1', help_text='(Trasferencia de ordenes y servicio al usuario final)')
     amabilidadCC = models.IntegerField( choices=CALIFICACION, blank=True, default='1', help_text='(Trasferencia...)')
@@ -103,12 +103,12 @@ class Encuestas(models.Model):
     efectividadGA = models.IntegerField( choices=CALIFICACION, blank=True, default='1')
 
     soporteFC = models.IntegerField( choices=CALIFICACION,      blank=True, default='1', help_text='(Cuentas por pagar)')
-    amabilidadFC = models.IntegerField( choices=CALIFICACION, blank=True, default='1')
-    efectividadFC = models.IntegerField( choices=CALIFICACION, blank=True, default='1')
+    amabilidadFC = models.IntegerField( choices=CALIFICACION, blank=True, default='1', help_text='(Cuentas por pagar)')
+    efectividadFC = models.IntegerField( choices=CALIFICACION, blank=True, default='1', help_text='(Cuentas por pagar)')
 
     soporteFV = models.IntegerField( choices=CALIFICACION,      blank=True, default='1', help_text='(Ventas POS y Cuentas por cobrar)')
-    amabilidadFV = models.IntegerField( choices=CALIFICACION, blank=True, default='1')
-    efectividadFV = models.IntegerField( choices=CALIFICACION, blank=True, default='1')
+    amabilidadFV = models.IntegerField( choices=CALIFICACION, blank=True, default='1', help_text='(Ventas POS ...)')
+    efectividadFV = models.IntegerField( choices=CALIFICACION, blank=True, default='1', help_text='(Ventas POS ...)')
 
     soporteFT = models.IntegerField( choices=CALIFICACION,      blank=True, default='1', help_text='(Tesorería: Pago de cajas menores y recolección de dinero PROSEGUR)')
     amabilidadFT = models.IntegerField( choices=CALIFICACION, blank=True, default='1', help_text='(Tesorería: Pago de cajas menores y...)')

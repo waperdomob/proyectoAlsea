@@ -4,8 +4,7 @@ body {
      
     /* background: #153786; */
     background-image: linear-gradient(to right, #153786, #0a5eda, #153786, #153786, #153786, #153786, #153786, #153786, #153786, #153786, #3e68e2, #153786);
-
-    
+   
     
 }
 html {
@@ -74,6 +73,7 @@ html {
     transform: translateY(0%);
     border: 2px solid #f8f6f4f6; 
     background-color: #153786;
+    color: azure;
 
 
   }
@@ -147,4 +147,8 @@ html {
    text-align: center;
    color:yellow;
    font-size: large;
+ }
+
+ .not-visible{
+   display: none;
  }

@@ -162,7 +162,7 @@ def actualizar(request):
             nombresDocs.append(object.nombre)
             idsDocs.append(object.id)
             doc_file.append("C:/Alsea/Alsea1"+str(object.doc_file))
-
+        
         if user_id == solicitud.user_id:
             miFormulario1 = FormularioUpdate(request.POST or None)
             miFormulario2 =   request.FILES or None
@@ -183,11 +183,13 @@ def actualizar(request):
                 if miFormulario2:
                     infForm.save()                     
                     for key in miFormulario2:
+                        
                         for j in range(len(nombresDocs)):
                             
                             if nombresDocs[j] == key:
                                 
                                 ruta = doc_file[j]
+                                print(ruta)
                                 fs = FileSystemStorage()
                                 default_storage.delete(ruta)
                                 Documentos.objects.filter(nombre = nombresDocs[j]).delete()

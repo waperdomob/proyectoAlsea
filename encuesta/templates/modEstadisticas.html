@@ -1,17 +1,53 @@
 {%  extends "base.html" %}
+{%  load static   %}
+{% load crispy_forms_tags %}
 {%  block title %}
     Información
 {%  endblock    %}
 
+{%  block scripts   %}
+    <script src="{% static 'js/home.js' %}" defer></script>
+{%  endblock    %}
+
 {%  block content   %}
+<!-- Modal -->
+<div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar Reporte</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <div id="alert-box"></div>
+            <form id="report_form">
+                {%  csrf_token  %}
+                {{report_form|crispy}}
+            <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+    </div>
+</div>
 <br><br>
 <div class="container ">
     <div class="container contenedorRegistrar">
+        
         <form action="{% url 'estadisticas'  %}" method="post">{% csrf_token %}
 
             <h2 style="color: aliceblue;"><center>Modulo de Estadisticas</center></h2>
             <br><br>
             <p class="textLabel">Seleccione los parametros que quiere filtrar para las estadisticas</p>
+            <br>
+            {% if no_data %}
+            <div class="alert alert-warning" role="alert">
+                {{no_data}}
+            </div>
+            {% endif %}
             <br>
             <div class="row">
                 <div class="col-sm-1 mt-3"></div>
@@ -44,7 +80,7 @@
                             <option value="{{object.id}}">{{object.marca}}</option>
                         {% endfor %}    
                     </select> 
-                    {{form}}
+                    {{filtrar_form}}
                     
                 </div><br><br><br>
                 <button type="submit" class="btn btn-primary btn-lg mt-3">Enviar</button>   
@@ -69,17 +105,15 @@
                 <h2 style="color: #eff2f3;"><center>Promedio</center></h2><br>
                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
                     {% for object in chart %}
-                    <img src="data:image/png;base64, {{object|safe}} " alt="">                
+                    <img src="data:image/png;base64, {{object|safe}} " alt="" id="img" class="images">                
                         <br><br>
                     {% endfor %}
                 </div>
             </div>
         </div>
     
-        {%  else %}
-        <br><br>    
-        <h2 style="color: #eff2f3;"><center>No Data</center></h2><br
         {% endif %}<br>
+         <button class="btn centrado2 not-visible" id="report-btn" data-bs-toggle="modal" data-bs-target="#reportModal">Agregar reporte</button>
     </div>
 </div>
 <br><br>

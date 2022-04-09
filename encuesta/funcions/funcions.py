@@ -206,5 +206,7 @@ def pasar_dicc(encuestas):
                 'efectividad':pos.efectividadAUD,         
             }
         Auditoria.append(obj15)
-    Todos=[RH_Contratación,RH_Nomina,Contac_center,Gerencia_Administrativa,Finanzas_Cpp,Finanzas_Vposs,Finanzas_tes,Sac_supli_chain,Sac_supli_chain_AX,Sac_supli_chain_CP,Marketing,Hseq,Tecnologia,Auditoria]
+
+
+    Todos=[RH_Contratación,RH_Nomina,Contac_center,Gerencia_Administrativa,Finanzas_Cpp,Finanzas_Vposs,Finanzas_tes,Sac_supli_chain,Sac_supli_chain_AX,Sac_supli_chain_CP,Marketing,Hseq,Legal,Tecnologia,Auditoria]
     return Todos

@@ -16,12 +16,12 @@ CHART_CHOICES = (
 )
 class MarcasForm(forms.ModelForm):
     class Meta:
-        model: MarcasTiendas
+        model= MarcasTiendas
         fields = ('marca',)
 
 class CiudadesForm(forms.ModelForm):
     class Meta:
-        model: Ciudades
+        model= Ciudades
         fields = ('ciudad',)
 
 

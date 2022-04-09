@@ -28,7 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),   
     path('',include('solicitudes.urls')),
     path('encuesta/',include('encuesta.urls')),
-
+    path('reporte/',include('reporte.urls')),
 
 ]
 handler404 ="solicitudes.views.handle_not_found"

@@ -35,15 +35,15 @@ def get_chart(chart_type, data,titulos, **kwargs):
                 figsize=(5,3),
                 title=titulos,
                 ylabel='Calificación',)
-                
+
+        
         #sns.barplot(x=x_values, y='amabilidad', data=data)
     elif (chart_type=='#2'):
         print('pie chart')
         plt.title(titulos)
         mylabels = ["Soporte", "Amabilidad",  "Efectividad"]
         plt.pie(data,labels = mylabels)
-        plt.legend(title = "Promedio de respuestas")
-
+       
     elif (chart_type=='#3'): 
         plt.title(titulos)     
         plt.plot(data,linewidth = '2.5', marker='o',linestyle='dashed')

@@ -1,6 +1,7 @@
 {%  extends "base.html" %}
 {%  block title %}
     Información
+ 
 {%  endblock    %}
 
 {%  block content   %}
@@ -38,10 +39,12 @@
             </ul>
             <br>
             <div class="row row-cols-3">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <a href="{% url 'estadisticas'  %}" class="btn centrado2" style="text-decoration: none; color:white"> Estadisticas</a>
                 </div> 
-               
+                <div class="col-lg-4">
+                    <a href="{% url 'reportes'  %}" class="btn centrado2" style="text-decoration: none; color:white"> Reportes</a>
+                </div> 
                 
                 <br><br>
             </div>
