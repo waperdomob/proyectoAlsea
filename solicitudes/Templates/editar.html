@@ -2,19 +2,30 @@
 {%  block title %}
 Editar Solicitud
 {%  endblock    %}
-
+{% load crispy_forms_tags %}
 {%  block content   %}
-<div class=" contenedor2">
+<div class=" contenedor3">
     <br>
     <h2 style="color: #f7f8f8;"><center>Editar Solicitud!</center></h2>
     
-    <form action="{% url 'actualizar' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
-        
+    <form action="{% url 'actualizar' pk %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        {% for hidden in form1.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
         <div class="row justify-content-center">
             <div class="col-sm-6 col-md-4">
                 <br>
-                <div class="mb-3" >
-                    {{  form1.as_table   }}
+                <div class="mb-4" >
+
+                    {% for row in form1.visible_fields  %}
+                        <div class="table">
+                            <label  class="textLabel" for="{{ row.html_name }}" > <!-- row.html_name imprime el nombre que django le da al campo -->                          
+                               {{ row.label_tag }} <!-- .label_tag es el valor del label que le diste en forms.py -->
+                            </label>
+                            {{ row }} <!-- aqui imprimimos el campo -->
+                            <p class="help-block">{{ row.errors.as_text }} {{ row.field.css_classes }}</p>
+                        </div> 
+                    {% endfor %}
                 </div> 
                 <button type="submit" class="btn btn-lg centrado" style="text-decoration: none; color:white">
                 Actualizar!

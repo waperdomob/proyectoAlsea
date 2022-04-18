@@ -26,30 +26,32 @@
                     <td>{{object.nombre}}</td>  
                     <td>
                         <a href="../../media/{{ object.documento }}" class="btn btn-primary">Ver archivo</a>
-                        <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEliminar"><span class="glyphicon glyphicon-trash"></span> Eliminar </a></td>  
-                    <!-- Modal Structure -->
-                    <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Eliminar Reporte</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body" id="modal-body">
-                                  <div id="alert-box"></div>
-                                  <form id="{% url 'eliminarReporte' object.id %}">
-                                      {%  csrf_token  %}
-                                      <h3>Estas a punto de eliminar al reporte con nombre: {{object.nombre}}!!</h3>
-                                  <button type="submit" class="btn btn-primary mt-2">Eliminar</button>
-                      
-                                  </form>
-                              </div>
-                              <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEliminar{{object.id}}"><span class="glyphicon glyphicon-trash"></span> Eliminar </a>
+                     
+                      <!-- Modal Structure -->
+                      <div class="modal fade" id="modalEliminar{{object.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header contenedorModal">
+                                  <h5 class="modal-title" id="exampleModalLabel">Eliminar Reporte</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
+                                <div class="modal-body contenedorModal" id="modal-body">
+                                    <div id="alert-box"></div>
+                                    <form action="{% url 'eliminarReporte' object.id %}">
+                                      {% csrf_token %}
+                                        <h3>Estas a punto de eliminar al reporte con nombre: {{object.nombre}}!!</h3>
+                                    <button type="submit" class="btn centrado4">Eliminar</button>
+                        
+                                    </form>
+                                </div>
+                                <div class="modal-footer contenedorModal">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  </div>
+                              </div>
                             </div>
-                          </div>
-                    </div>
+                      </div>
+                    </td> 
                 </tr>
                 {% endfor %}
                 
@@ -58,7 +60,10 @@
 
         <a href="{% url 'inicio' %}" class="btn centrado2">Volver</a>
         <br><br><br><br>
-        <br><br><br><br>
+        
         
     </div>
+    <br><br><br><br>
+    <br><br><br><br>
+
 {%  endblock    %}

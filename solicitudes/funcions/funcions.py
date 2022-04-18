@@ -10,7 +10,6 @@ def handle_uploaded_file(name,f):
 def subirDocs(nombre,doc,rut):
 
     postfix=doc.name.split('.')[1]
-    
     fs = FileSystemStorage()
     name1 = fs.save(nombre+rut+'.'+postfix,doc)
     url1 = fs.url(name1)

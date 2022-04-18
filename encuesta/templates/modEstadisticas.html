@@ -11,23 +11,23 @@
 
 {%  block content   %}
 <!-- Modal -->
-<div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade contenedor" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
+      <div class="modal-content contenedor2" >
+        <div class="modal-header contenedorModal" >
           <h5 class="modal-title" id="exampleModalLabel">Agregar Reporte</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body" id="modal-body">
+        <div class="modal-body contenedorModal" id="modal-body" >
             <div id="alert-box"></div>
             <form id="report_form">
                 {%  csrf_token  %}
                 {{report_form|crispy}}
-            <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+            <button type="submit" class="btn centrado3">Guardar</button>
 
             </form>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer contenedorModal">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
       </div>
@@ -88,10 +88,12 @@
             
         </form>
     </div>
+    <br>
+    <a href="{% url 'inicio' %}" class="btn centrado2">Volver</a>
 
     <div class="container">
         {% if datos %}
-        <div class="row">
+        <div class="row ">
             <div class="col-lg-6  p-5">
                 <h2 style="color: #eff2f3;"><center>Encuestas</center></h2><br>
                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -116,5 +118,4 @@
          <button class="btn centrado2 not-visible" id="report-btn" data-bs-toggle="modal" data-bs-target="#reportModal">Agregar reporte</button>
     </div>
 </div>
-<br><br>
 {%  endblock    %}

@@ -16,8 +16,8 @@ urlpatterns = [
     path('consultarS/',views.consultarS, name='consultarS'),
     path('consultarSolicitud/',views.consultarSolicitud, name='consultarSolicitud'),
     path('documentos/',views.documentos, name='documentos'),
-    path('editar/',views.editar, name='editar'),
-    path('actualizar/',views.actualizar, name='actualizar'),
+    path('editar/<int:pk>',views.editar, name='editar'),
+    path('actualizar/<int:pk>',views.actualizar, name='actualizar'),
 
 ]
 

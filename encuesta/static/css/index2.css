@@ -22,11 +22,7 @@ html {
     overflow: hidden;
   }
   
-  .content-footer {
-    
-    height: 20%;
-    margin-top: 100px;
-  }
+
   .button-center{
     margin: 0;
     position: absolute;
@@ -74,7 +70,24 @@ html {
     border: 2px solid #f8f6f4f6; 
     background-color: #153786;
     color: azure;
+  }
+  .centrado3 {
+    width: 110px; /* Para que no se rompa en dos líneas, y lo translade tal cual. */
+    margin-left: 40%;
+    transform: translateX(-50%);
+    transform: translateY(0%);
+    border: 2px solid #f8f6f4f6; 
+    background-color: #153786;
+    color: azure;
 
+  }
+  .centrado4 {
+    width: 110px; /* Para que no se rompa en dos líneas, y lo translade tal cual. */
+    transform: translateX(-50%);
+    transform: translateY(0%);
+    border: 2px solid #f8f6f4f6; 
+    background-color: #bab51c;
+    color: rgb(2, 2, 2);
 
   }
   .containerDocs{
@@ -107,7 +120,10 @@ html {
     background-repeat: no-repeat, no-repeat, no-repeat,no-repeat, no-repeat, no-repeat; 
     background-size: 100px 100px,100px 100px,100px 100px,100px 100px,100px 100px;
   }
-
+  .contenedorModal{
+    background-image: linear-gradient(to right, #153786, #0a5eda, #153786, #153786, #153786, #153786, #153786, #153786, #153786, #153786, #3e68e2, #153786);
+    color: azure;
+  }
   .fotterlist{
     padding-right: 200px;
   }

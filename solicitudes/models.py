@@ -6,7 +6,11 @@ from django.forms import CharField
 from django.contrib.auth.models import User
 
 # Create your models here.
-
+CHOICES2 =(
+    ("vinculacion", "Vinculación"),
+    ("actualizacion", "Actualización"),
+    
+)
 class Marca(models.Model):
     marca = models.CharField(max_length=45)
 
@@ -20,7 +24,7 @@ class Solicitudes(models.Model):
     razonSocial = models.CharField(max_length=45)
     numProveedor = models.CharField(max_length=45)
     fecha = models.DateField()
-    vinculacion = models.CharField(max_length=45)
+    vinculacion = models.CharField(choices=CHOICES2, max_length=45)
     user = models.ForeignKey(User,null=True, on_delete=models.CASCADE)
     marca = models.ForeignKey(Marca,null=True, on_delete=models.CASCADE)
     
@@ -28,7 +32,7 @@ class Solicitudes(models.Model):
 class Documentos(models.Model):
     
     nombre = models.CharField(max_length=100)
-    doc_file = models.FileField(upload_to='',default="")    
+    doc_file = models.FileField(upload_to='proveedores/',default="")    
     solicitudes_rutNit = models.ForeignKey(Solicitudes,null=False, on_delete=models.CASCADE)
     
     def __str__(self):

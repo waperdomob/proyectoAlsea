@@ -35,8 +35,16 @@ Registro de Solicitudes
         <div class="row">
             <div class="col-lg-6  p-5">
                 <br><br>
-                <div class="mb-3" >
-                    {{  form1.as_table   }}
+                <div class="mb-3" >                    
+                    {% for row in form1 %}
+                        <div class="container">
+                            <label  class="textLabel" for="{{ row.html_name }}" > <!-- row.html_name imprime el nombre que django le da al campo -->
+                               {{ row.label_tag }} <!-- .label_tag es el valor del label que le diste en forms.py -->
+                            </label>
+                            {{ row }} <!-- aqui imprimimos el campo -->
+                            <p class="help-block">{{ row.errors.as_text }} {{ row.field.css_classes }}</p>
+                        </div> 
+                {% endfor %}
                 </div>
                 <div class="">
                     <button type="submit" class="btn btn-lg centrado" style="text-decoration: none; color:white">

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'reporte',
     'encuesta',
     'crispy_forms',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'solicitudes',
         'USER': 'postgres',
-        'PASSWORD': 'perdomopulido30',
+        'PASSWORD': '123456789',
         'HOST': '127.0.0.1',
         'DATABASE_PORT':'5432',
     }

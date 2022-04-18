@@ -9,7 +9,6 @@ from django.http import Http404, HttpResponseRedirect
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 import pandas as pd
-from pymysql import NULL
 from encuesta.utils import get_ciudad_from_id,get_marca_from_id, get_chart,get_graph
 from encuesta.funcions.funcions import filtrar,pasar_dicc
 from encuesta.forms import *
@@ -47,8 +46,7 @@ def registrarEncuesta(request):
     user_id=int(request.session.get('_auth_user_id'))
     if request.method=="POST":
         miEncuesta = EncuestaForm(request.POST)
-        for object in miEncuesta:
-            print(object)
+
         if miEncuesta.is_valid():
             encuesta = miEncuesta.save(commit=False)
             encuesta.user_id = user_id
@@ -65,7 +63,6 @@ def estadisticas(request):
     
     if request.user.is_superuser:
         report_form = ReporteForm()
-        user_id=int(request.session.get('_auth_user_id'))
         titulos=['RH_Contratación','RH_Nomina','Contac_center','Gerencia_Administrativa','Finanzas_Cpp','Finanzas_Vposs','Finanzas_tes' ,'Sac_supli_chain','Sac_supli_chain_AX','Sac_supli_chain_CP','Marketing','Hseq','Legal','Tecnologia','Auditoria']  
         filtrar_form = FiltrarResultados()
         locales = Encuestas.objects.only('tienda').distinct('tienda')
@@ -108,7 +105,7 @@ def estadisticas(request):
                     chart[i] = get_chart(chart_type, prom[i],titulos[i])
 
                 for i in range(len(obj)):
-                    df2[i] = enc_sep[i].style.set_table_attributes('class="table-wrapper-scroll-y mi-table", id= "dtVerticalScrollExample"').set_caption(titulos[i]).render()
+                    df2[i] = enc_sep[i].style.set_table_attributes('class="table-wrapper-scroll-y mi-table"').set_caption(titulos[i]).to_html()
                 
                 df1 = df1.to_html()
                 
@@ -138,7 +135,11 @@ def eliminarReporte(request,pk):
     if request.user.is_superuser:
         reporte = Reporte.objects.get(id=pk)
         print(reporte)
+        reporte.delete()
+        reportes = Reporte.objects.all()
         context = {
-            'reportes': reporte,
+            'object_list': reportes,
         }
-        return render(request, 'reportes.html', context)
+        return reportListView.as_view()(
+            request,
+            object_list=reportes)

@@ -61,9 +61,9 @@ def pasar_dicc(encuestas):
                 'nombre': pos.nombre,
                 'cargo': pos.cargo,
                 'tienda': pos.tienda,
-                'soporte' : pos.soporteRHC,
-                'amabilidad': pos.amabilidadRHC,
-                'efectividad': pos.efectividadRHC,                
+                'soporte' : int(pos.soporteRHC),
+                'amabilidad': int(pos.amabilidadRHC),
+                'efectividad': int(pos.efectividadRHC),                
             }
         RH_Contratación.append(obj1)
         obj2 = {
@@ -71,9 +71,9 @@ def pasar_dicc(encuestas):
                 'nombre': pos.nombre,
                 'cargo': pos.cargo,
                 'tienda': pos.tienda,
-                'soporte' : pos.soporteRHN,
-                'amabilidad':pos.amabilidadRHN,
-                'efectividad':pos.efectividadRHN,                
+                'soporte' : int(pos.soporteRHN),
+                'amabilidad':int(pos.amabilidadRHN),
+                'efectividad':int(pos.efectividadRHN),                
             }
         RH_Nomina.append(obj2)
         obj3 = {
@@ -81,9 +81,9 @@ def pasar_dicc(encuestas):
                 'nombre': pos.nombre,
                 'cargo': pos.cargo,
                 'tienda': pos.tienda,
-                'soporte' : pos.soporteCC,
-                'amabilidad' :pos.amabilidadCC,
-                'efectividad':pos.efectividadCC,             
+                'soporte' : int(pos.soporteCC),
+                'amabilidad' :int(pos.amabilidadCC),
+                'efectividad':int(pos.efectividadCC),             
             }
         Contac_center.append(obj3)
         obj4 = {
@@ -91,9 +91,9 @@ def pasar_dicc(encuestas):
                 'nombre': pos.nombre,
                 'cargo': pos.cargo,
                 'tienda': pos.tienda,
-                'soporte' : pos.soporteGA,
-                'amabilidad' :pos.amabilidadGA,
-                'efectividad':pos.efectividadGA,    
+                'soporte' : int(pos.soporteGA),
+                'amabilidad' : int(pos.amabilidadGA),
+                'efectividad': int(pos.efectividadGA),    
             }
         Gerencia_Administrativa.append(obj4)
         obj5 = {
@@ -101,9 +101,9 @@ def pasar_dicc(encuestas):
                 'nombre': pos.nombre,
                 'cargo': pos.cargo,
                 'tienda': pos.tienda,
-                'soporte' : pos.soporteFC,
-                'amabilidad' :pos.amabilidadFC,
-                'efectividad':pos.efectividadFC,
+                'soporte' : int(pos.soporteFC),
+                'amabilidad' : int(pos.amabilidadFC),
+                'efectividad': int(pos.efectividadFC),
             }
         Finanzas_Cpp.append(obj5)
         obj6 = {
@@ -111,9 +111,9 @@ def pasar_dicc(encuestas):
                 'nombre': pos.nombre,
                 'cargo': pos.cargo,
                 'tienda': pos.tienda,
-                'soporte' : pos.soporteFV,
-                'amabilidad' :pos.amabilidadFV,
-                'efectividad':pos.efectividadFV,    
+                'soporte' : int(pos.soporteFV),
+                'amabilidad' : int(pos.amabilidadFV),
+                'efectividad': int(pos.efectividadFV),    
             }
         Finanzas_Vposs.append(obj6)
         obj7 = {
@@ -121,9 +121,9 @@ def pasar_dicc(encuestas):
                 'nombre': pos.nombre,
                 'cargo': pos.cargo,
                 'tienda': pos.tienda,
-                'soporte' : pos.soporteFT,
-                'amabilidad' :pos.amabilidadFT,
-                'efectividad':pos.efectividadFT,          
+                'soporte' : int(pos.soporteFT),
+                'amabilidad' :int(pos.amabilidadFT),
+                'efectividad':int(pos.efectividadFT),          
             }
         Finanzas_tes.append(obj7)
         obj8 = {
@@ -131,9 +131,9 @@ def pasar_dicc(encuestas):
                 'nombre': pos.nombre,
                 'cargo': pos.cargo,
                 'tienda': pos.tienda,
-                'soporte' :pos.soporteSSCE,
-                'amabilidad':pos.amabilidadSSCE, 
-                'efectividad':pos.efectividadSSCE,                
+                'soporte' :int(pos.soporteSSCE),
+                'amabilidad':int(pos.amabilidadSSCE), 
+                'efectividad':int(pos.efectividadSSCE),                
             }
         Sac_supli_chain.append(obj8)
         obj9 = {
@@ -141,9 +141,9 @@ def pasar_dicc(encuestas):
                 'nombre': pos.nombre,
                 'cargo': pos.cargo,
                 'tienda': pos.tienda,
-                'soporte' :pos.soporteSSCA,
-                'amabilidad':pos.amabilidadSSCA, 
-                'efectividad':pos.efectividadSSCA,               
+                'soporte' :int(pos.soporteSSCA),
+                'amabilidad':int(pos.amabilidadSSCA), 
+                'efectividad':int(pos.efectividadSSCA),               
             }
         Sac_supli_chain_AX.append(obj9)
         obj10 = {
@@ -151,9 +151,9 @@ def pasar_dicc(encuestas):
                 'nombre': pos.nombre,
                 'cargo': pos.cargo,
                 'tienda': pos.tienda,
-                'soporte' :pos.soporteSSCC,
-                'amabilidad':pos.amabilidadSSCC,
-                'efectividad':pos.efectividadSSCC,            
+                'soporte' :int(pos.soporteSSCC),
+                'amabilidad':int(pos.amabilidadSSCC),
+                'efectividad':int(pos.efectividadSSCC),            
             }
         Sac_supli_chain_CP.append(obj10)
         obj11 = {
@@ -161,9 +161,9 @@ def pasar_dicc(encuestas):
                 'nombre': pos.nombre,
                 'cargo': pos.cargo,
                 'tienda': pos.tienda,
-                'soporte' : pos.soporteMC,
-                'amabilidad' :pos.amabilidadMC,
-                'efectividad':pos.efectividadMC,           
+                'soporte' : int(pos.soporteMC),
+                'amabilidad' :int(pos.amabilidadMC),
+                'efectividad':int(pos.efectividadMC),           
             }
         Marketing.append(obj11)
         obj12 = {
@@ -171,9 +171,9 @@ def pasar_dicc(encuestas):
                 'nombre': pos.nombre,
                 'cargo': pos.cargo,
                 'tienda': pos.tienda,
-                'soporte' :pos.soporteHSEQ,
-                'amabilidad':pos.amabilidadHSEQ,
-                'efectividad':pos.efectividadHSEQ,            
+                'soporte' :int(pos.soporteHSEQ),
+                'amabilidad':int(pos.amabilidadHSEQ),
+                'efectividad':int(pos.efectividadHSEQ),            
             }
         Hseq.append(obj12)
         obj13 = {
@@ -181,9 +181,9 @@ def pasar_dicc(encuestas):
                 'nombre': pos.nombre,
                 'cargo': pos.cargo,
                 'tienda': pos.tienda,
-                'soporte' :pos.soporteLEGAL,
-                'amabilidad':pos.amabilidadLEGAL,
-                'efectividad':pos.efectividadLEGAL,
+                'soporte' :int(pos.soporteLEGAL),
+                'amabilidad':int(pos.amabilidadLEGAL),
+                'efectividad':int(pos.efectividadLEGAL),
             }
         Legal.append(obj13)
         obj14 = {
@@ -191,9 +191,9 @@ def pasar_dicc(encuestas):
                 'nombre': pos.nombre,
                 'cargo': pos.cargo,
                 'tienda': pos.tienda,
-                'soporte' : pos.soporteTEC,
-                'amabilidad' :pos.amabilidadTEC,
-                'efectividad' :pos.efectividadTEC,            
+                'soporte' : int(pos.soporteTEC),
+                'amabilidad' :int(pos.amabilidadTEC),
+                'efectividad' :int(pos.efectividadTEC),            
             }
         Tecnologia.append(obj14)
         obj15 = {
@@ -201,9 +201,9 @@ def pasar_dicc(encuestas):
                 'nombre': pos.nombre,
                 'cargo': pos.cargo,
                 'tienda': pos.tienda,
-                'soporte' : pos.soporteAUD,
-                'amabilidad':pos.amabilidadAUD,
-                'efectividad':pos.efectividadAUD,         
+                'soporte' : int(pos.soporteAUD),
+                'amabilidad':int(pos.amabilidadAUD),
+                'efectividad':int(pos.efectividadAUD),         
             }
         Auditoria.append(obj15)
 

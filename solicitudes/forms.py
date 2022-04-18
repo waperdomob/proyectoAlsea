@@ -4,9 +4,9 @@ from tkinter import HIDDEN
 from xml.dom.minidom import Attr
 from django import forms
 import datetime
-
-#from matplotlib import widgets
 from .models import Solicitudes, Documentos, Marca
+
+
 CHOICES =(
     ("0","Elija una opción"),
     ("Estrella Andina", "Estrella Andina"),
@@ -19,17 +19,37 @@ CHOICES2 =(
     ("actualizacion", "Actualización"),
     
 )
+class MarcasForm(forms.ModelForm):
+    class Meta:
+        model= Marca
+        fields = ('marca',)
 
-class FormularioSolicitud(forms.Form):
-    required_css_class = 'textLabel'
-    rutNit = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}),label="Rut o Nit")
-    ticket = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control'}),label="Número del Ticket")
-    nombre = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    razonSocial = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}),label="Razón social")
-    numProveedor = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}),label="Número de proveedor")
-    fecha = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control'}),initial=datetime.date.today,disabled = True)
-    vinculacion = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}),label="Vinculación o Actualización",choices=CHOICES2)
-    marca = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}),choices=CHOICES)
+class SolicitudForm(forms.ModelForm):
+    #required_css_class = 'textLabel'
+    class Meta:
+        model = Solicitudes
+        exclude = ['user']
+        labels = {     
+            'rutNit':'Rut o Nit',
+            'ticket':'Número del Ticket',
+            'nombre':'Nombre',
+            'razonSocial':'Razón social',
+            'numProveedor':'Número de proveedor',
+            'fecha':'Fecha  Actual',
+            'vinculacion':'Vinculación o Actualización',
+            'marca':'Marca',
+            }
+        widgets = {
+	        'rutNit':forms.TextInput(attrs={'class':'form-control'}),
+	        'ticket':forms.NumberInput(attrs={'class':'form-control'}),
+	        'nombre':forms.TextInput(attrs={'class':'form-control'}),
+            'razonSocial':forms.TextInput(attrs={'class':'form-control'}),
+	        'numProveedor':forms.TextInput(attrs={'class':'form-control'}),
+            'fecha':forms.DateInput(attrs={'class':'form-control','type':'date'}),
+            'vinculacion':forms.Select(attrs={'class':'form-control'}),
+            'marca':forms.Select(attrs={'class':'form-control'}),
+        }
+        
 
  
 class FormularioDocs(forms.Form):

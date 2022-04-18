@@ -19,7 +19,7 @@ Registro de Solicitudes
                     <p class="textLabel">Marca: {{datos.marca}}</p>
                     <p class="textLabel">Fecha: {{datos.fecha}}</p>
 
-                    <form action="{% url 'editar' %}" method="POST">
+                    <form action="{% url 'editar' datos.rutNit %}" method="POST">
                         {% csrf_token %}
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" name="rutNit" value="{{ datos.rutNit }}" hidden>
                         <button type="submit" class="btn btn-primary btn-lg mt-3"
@@ -58,8 +58,6 @@ Registro de Solicitudes
 </div>
 
 <br><br>
-<br><br>
-<br><br>
-<br><br><br>
+
 
 {%  endblock    %}

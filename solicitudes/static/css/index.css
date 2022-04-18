@@ -71,17 +71,19 @@ html {
   }
   .contenedor2{
     background-image:url("../img/ALSEA.png"), url("../img/figura_familiares.svg"), url("../img/figura_rapida.svg"),url("../img/gaseosa.svg"), url("../img/figura_casual.svg"), url("../img/figura_sandwich.svg"); 
-    background-position: 20% 90%, 0% 10%, 100% 10%, 35% 90%, 0% 60%, 100% 60%;
+    background-position: 20% 90%, 0% 10%, 100% 10%, 40% 90%, 0% 60%, 100% 60%;
+    background-repeat: no-repeat, no-repeat, no-repeat,no-repeat, no-repeat, no-repeat; 
+    background-size: 100px 100px,100px 100px,100px 100px,100px 100px,100px 100px,100px 100px;
+  }
+  .contenedor3{
+    background-image:url("../img/ALSEA.png"), url("../img/figura_familiares.svg"), url("../img/figura_rapida.svg"),url("../img/gaseosa.svg"), url("../img/figura_casual.svg"), url("../img/figura_sandwich.svg"); 
+    background-position: 20% 100%, 5% 10%, 95% 10%, 40% 100%, 5% 60%, 95% 60%;
     background-repeat: no-repeat, no-repeat, no-repeat,no-repeat, no-repeat, no-repeat; 
     background-size: 100px 100px,100px 100px,100px 100px,100px 100px,100px 100px,100px 100px;
   }
   .contenedorRegistrar{
     background-image:url("../img/ALSEA.png"), url("../img/figura_rapida.svg"),url("../img/gaseosa.svg"), url("../img/figura_casual.svg"), url("../img/figura_sandwich.svg"); 
-    background-position: 10% 0%, 100% 0%, 22% 90%, 5% 90%, 40% 90%;
+    background-position: 10% 0%, 100% 0%, 22% 100%, 5% 100%, 40% 100%;
     background-repeat: no-repeat, no-repeat, no-repeat,no-repeat, no-repeat, no-repeat; 
     background-size: 100px 100px,100px 100px,100px 100px,100px 100px,100px 100px;
-  }
-
-  .fotterlist{
-    padding-right: 200px;
   }
