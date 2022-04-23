@@ -22,7 +22,21 @@ html {
     overflow: hidden;
   }
   
-
+  .boxItem {
+    display: block;
+    align-items: center;
+    width: 50%;
+  }
+  .boxItem2 {
+    display: flex;
+    align-items: center;
+    width: 30%;
+  }
+  .boxItem3 {
+    display: flex;
+    align-items: center;
+    width: 90%;
+  }
   .button-center{
     margin: 0;
     position: absolute;
@@ -30,7 +44,6 @@ html {
     -ms-transform: translateY(-50%);
     transform: translateX(600px);
   }
-
   
   .cardContainer2{  
     display: flex;
@@ -39,17 +52,37 @@ html {
     align-items: center;
     text-align: center;
     height: 15rem;
-    border-radius: 5px;    
-    box-shadow: rgba(0, 0, 0, 0.7);
-    color: white;
+    border-radius: 3px;    
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.7);
+    color: white; 
     font-family: 'Baloo Paaji 2', cursive;
   }
+
   .grid-container {
     
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
     font-size: 1.2em;
   }
+  .cardContainer4{  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 6rem;
+    border-radius: 3px;    
+    box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.7);
+    color: white; 
+    font-family: 'Baloo Paaji 2', cursive;
+  }
+  .grid-container2 {
+    
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    font-size: 1.2em;
+  }
+  
   .cardContainer3{
     
     grid-gap: 50px 20px;
@@ -61,6 +94,17 @@ html {
     border-radius: 20px;
     box-shadow: 5px 5px 5px 5px #ec760750;
 
+  }
+  .cardContainer5{  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 15rem;
+    border-radius: 3px;    
+    color: white; 
+    font-family: 'Baloo Paaji 2', cursive;
   }
   .centrado2 {
     width: 110px; /* Para que no se rompa en dos líneas, y lo translade tal cual. */
@@ -90,16 +134,13 @@ html {
     color: rgb(2, 2, 2);
 
   }
-  .containerDocs{
-    display: grid;
-    grid-gap: 100px 20px;
-  }
-  .contenedor{
+  .contenedorReporte{
     background-image:url("../img/ALSEA.png"), url("../img/figura_familiares.svg"), url("../img/figura_rapida.svg"),url("../img/gaseosa.svg"), url("../img/figura_casual.svg"), url("../img/figura_sandwich.svg"); 
-    background-position: 50% 15%, 0% 10%, 100% 10%, 50% 60%, 0% 60%, 100% 60%;
+    background-position: 0% 100%, 0% 0%, 100% 0%, 30% 100%, 100% 100%, 70% 100%;
     background-repeat: no-repeat, no-repeat, no-repeat,no-repeat, no-repeat, no-repeat; 
     background-size: 100px 100px,100px 100px,100px 100px,100px 100px,100px 100px,100px 100px;
   }
+
   .contenedor2{
     background-image:url("../img/ALSEA.png"), url("../img/figura_familiares.svg"), url("../img/figura_rapida.svg"),url("../img/gaseosa.svg"), url("../img/figura_casual.svg"), url("../img/figura_sandwich.svg"); 
     background-position: 20% 90%, 0% 10%, 100% 10%, 35% 90%, 0% 60%, 100% 60%;
@@ -113,10 +154,17 @@ html {
     background-repeat: no-repeat, no-repeat, no-repeat,no-repeat, no-repeat, no-repeat; 
     background-size: 100px 100px,100px 100px,100px 100px,100px 100px,100px 100px;
   }
+  .contenedorInfo{
+    
+    background-image:url("../img/ALSEA.png"), url("../img/figura_rapida.svg"),url("../img/gaseosa.svg"), url("../img/figura_casual.svg"), url("../img/figura_sandwich.svg"); 
+    background-position: 0% 0%, 100% 0%, 50% 0%, 0% 100%, 100% 100%;
+    background-repeat: no-repeat, no-repeat, no-repeat,no-repeat, no-repeat, no-repeat; 
+    background-size: 100px 100px,100px 100px,100px 100px,100px 100px,100px 100px;
+  }
   .contenedorEncuesta{
     
     background-image:url("../img/ALSEA.png"), url("../img/figura_rapida.svg"),url("../img/gaseosa.svg"), url("../img/figura_casual.svg"), url("../img/figura_sandwich.svg"); 
-    background-position: 10% 0%, 90% 0%, 50% 0%, 70% 90%, 90% 90%;
+    background-position: 10% 0%, 90% 0%, 50% 0%, 30% 98%, 65% 98%;
     background-repeat: no-repeat, no-repeat, no-repeat,no-repeat, no-repeat, no-repeat; 
     background-size: 100px 100px,100px 100px,100px 100px,100px 100px,100px 100px;
   }
@@ -130,7 +178,7 @@ html {
 
   table.mi-table {
     
-    width: 98%;
+    width: 100%;
     border-collapse: separate;
     border: 2px solid rgb(13, 13, 13);
     margin-top: 3%;

@@ -70,7 +70,7 @@
                     <select class="form-control" name="cargo" id="">
                         <option value="">--------</option>
                         {% for object in cargos %}
-                            <option value="{{object.cargo}}">{{object.cargo}}</option>
+                            <option value="{{object.id}}">{{object.cargo}}</option>
                         {% endfor %}    
                     </select> 
                     <label class="textLabel" for="">Seleccione la marca: </label>        
@@ -98,9 +98,12 @@
                 <h2 style="color: #eff2f3;"><center>Encuestas</center></h2><br>
                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
                     {% for object in datos2 %}
-                    {{object|safe}}                
-                    <br><br>
-                {% endfor %}
+                    
+                            {{object|safe}} 
+                                            
+                    {% endfor %}
+                    
+                <br><br>
                 </div>
             </div>
             <div class="col-lg-6  p-5">

@@ -1,18 +1,20 @@
 
-from re import template
 from django.urls import reverse
 import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.middleware import *
-from django.views.generic import CreateView,ListView
-from django.http import Http404, HttpResponseRedirect
+from django.views.generic import CreateView,ListView, FormView
+from django.views.decorators.csrf import csrf_exempt
+from django.http import Http404, HttpResponse, HttpResponseRedirect, JsonResponse
+
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
+import numpy as np 
 import pandas as pd
-from encuesta.utils import get_ciudad_from_id,get_marca_from_id, get_chart,get_graph
-from encuesta.funcions.funcions import filtrar,pasar_dicc
+from encuesta.utils import get_ciudad_from_id,get_marca_from_id, get_chart
+from encuesta.funcions.funcions import filtrar,pasar_dicc,agregar_elemento1,agregar_elemento2
 from encuesta.forms import *
-from encuesta.models import Encuestas, Ciudades, MarcasTiendas
+from encuesta.models import Encuestas, Ciudades, MarcasTiendas, Cargos
 from reporte.models import Reporte
 from reporte.forms import *
 # Create your views here.
@@ -28,12 +30,32 @@ def index(request):
         return response
 
 
-class crearEncuesta(CreateView):
-    model = Encuestas
-    form_class = EncuestaForm
+class crearEncuesta(FormView):
+    model = Encuestas, Areas
+    #form_class = EncuestaForm
+    #second_form_class = AreasForm    
     template_name = 'formEncuesta.html'
     initial = {'fecha': datetime.date.today() }
-    
+
+    def get(self, request, *args, **kwargs):
+        encuesta_form = EncuestaForm()
+        area_form = AreasForm()
+        context = {'form': encuesta_form, 'form2': area_form, 'fecha_actual':datetime.date.today()}
+        return render(request,'formEncuesta.html',context)
+
+    @csrf_exempt
+    def post(self,request, *args, **kwargs):
+        data = {}
+        try:
+            action = request.POST['action']
+            if action == 'search_cargo_id':
+                data=[]
+                for i in Cargos.objects.filter(area_id = request.POST['id']):
+                    data.append({'id':i.id, 'cargo':i.cargo})
+        except Exception as e:
+            data['error'] = str(e)
+        return JsonResponse(data, safe=False)
+
     def get_success_url(self):
         return reverse('encuesta:inicio')
 
@@ -53,7 +75,7 @@ def registrarEncuesta(request):
   
             miEncuesta.save()
             messages.success(request, 'Tu Respuesta fue enviada')
-            return render(request, 'info.html')
+            return render(request, 'confirm.html')
         else:
             messages.error(request, 'Algo ocurrió, vuelve a intentarlo!!')
             return render(request, 'info.html')
@@ -66,9 +88,11 @@ def estadisticas(request):
         titulos=['RH_Contratación','RH_Nomina','Contac_center','Gerencia_Administrativa','Finanzas_Cpp','Finanzas_Vposs','Finanzas_tes' ,'Sac_supli_chain','Sac_supli_chain_AX','Sac_supli_chain_CP','Marketing','Hseq','Legal','Tecnologia','Auditoria']  
         filtrar_form = FiltrarResultados()
         locales = Encuestas.objects.only('tienda').distinct('tienda')
-        cargos = Encuestas.objects.only('cargo').distinct('cargo')
+        cargos = Cargos.objects.all()
         ciudades= Ciudades.objects.all()
         tiendas = MarcasTiendas.objects.all()
+        suma= [None]*15
+        col_sumar = ['SOPORTE','AMABILIDAD','EFECTIVIDAD']
         df1 = None
         df2 = [None]*15
         prom = [None]*15
@@ -76,6 +100,10 @@ def estadisticas(request):
         enc_sep=[]
         encuestas=None
         no_data = None
+        subcadenaSum = [None]*15
+        subcadenaProm = [None]*15
+        
+
         if request.method=="POST":
 
             chart_type = request.POST.get('Grafica')
@@ -101,22 +129,33 @@ def estadisticas(request):
                 for i in range(len(obj)):
                     enc_sep.append(None)
                     enc_sep[i]= pd.DataFrame(obj[i])
-                    prom[i] = enc_sep[i].mean()
+                    suma[i] = enc_sep[i][col_sumar].sum() 
+                    prom[i] = enc_sep[i][col_sumar].mean()                    
                     chart[i] = get_chart(chart_type, prom[i],titulos[i])
-
+                    subcadenaProm[i] = round(prom[i],2)
+                    subcadenaSum[i] = suma[i].tolist()
+                    subcadenaProm[i] = subcadenaProm[i].tolist()
+                    subcadenaSum[i] = agregar_elemento1(subcadenaSum[i])
+                    subcadenaProm[i]= agregar_elemento2(subcadenaProm[i])
+        
                 for i in range(len(obj)):
-                    df2[i] = enc_sep[i].style.set_table_attributes('class="table-wrapper-scroll-y mi-table"').set_caption(titulos[i]).to_html()
-                
+                    dfNew1 = pd.DataFrame([subcadenaSum[i]], columns= ['nombre','cargo','tienda','SOPORTE','AMABILIDAD','EFECTIVIDAD'])
+                    dfNew2 = pd.DataFrame([subcadenaProm[i]], columns= ['nombre','cargo','tienda','SOPORTE','AMABILIDAD','EFECTIVIDAD'])
+                    df2[i] = enc_sep[i]
+                    df2[i]=pd.concat([df2[i], dfNew1])
+                    df2[i]=pd.concat([df2[i], dfNew2])
+                    df2[i]=df2[i].style.format(precision=2, na_rep='MISSING', thousands=" ",
+                            formatter={('SOPORTE', 'AMABILIDAD','EFECTIVIDAD'): "{:.2f}"}).set_table_attributes('class="table-wrapper-scroll-y mi-table"').set_caption(titulos[i]).to_html()
+
                 df1 = df1.to_html()
-                
+
             else:
                 no_data = 'No hay datos disponibles'
-                
+               
         context = {
             'no_data':no_data,
             'datos':df1,
             'datos2':df2,
-            'prom':prom,
             'encuestas': encuestas,
             'locales': locales,
             'cargos':cargos,

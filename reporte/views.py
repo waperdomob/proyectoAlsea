@@ -1,4 +1,9 @@
+from io import BytesIO
 from django.shortcuts import render
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+
+
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.core.files import File
@@ -23,6 +28,7 @@ def create_report(request):
         user_id = int(request.session.get('_auth_user_id'))
         nombre = request.POST.get('name')
         comentario = request.POST.get('remark')
+
         for i in range(len(imgs)):
             imagenes[i] = request.POST.get('imagen'+str(i))
         for i in range(len(imgs)):
@@ -45,3 +51,4 @@ def create_report(request):
         
         return JsonResponse({'msg':'send'})
     return JsonResponse({})
+    

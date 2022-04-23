@@ -33,3 +33,13 @@ function eliminar_Reporte() {
   })
 
   }
+
+  $(function () {
+    /* $('select2').select2({
+        theme: 'bootstrap4',
+    }); */
+    $('select[name="area"]').on('change', function() {
+        alert('x');
+    });
+
+});

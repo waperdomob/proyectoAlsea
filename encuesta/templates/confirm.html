@@ -1,0 +1,44 @@
+{%  extends "base.html" %}
+{%  block title %}
+    Información
+{%  endblock    %}
+
+{%  block content   %}
+
+   <div class="container contenedorInfo">
+        <br><br>
+        <br>
+        <h1 style="color: aliceblue;"><center>Encuesta de Satisfacción de Servicio. </center></h1> 
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="textLabel">
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error:
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}¡Bien!:
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}Advertencia:
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}Aviso: {% endif %}
+                {{ message }}
+            </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+        <div class="container">
+            <div class="container cardContainer3">
+            
+                <p class="textLabel">Buen día estimado colaborador.</p>
+                <br>
+                <p class="textLabel"> Gracias por tu colaboración realizando la encuesta.</p>
+                <br>
+                <p class="textLabel">Esta encuesta fue realizada con el proposito de mejorar el servicio de atención de las áreas evaluadas, por tal motivo es muy importante contar con su colaboración.</p>
+    
+                <strong class="textLabel">!Ten un excelente día¡</strong>
+                <br>
+               
+                <a href="{% url 'logout'%}" class="btn centrado2" style="text-decoration: none; color:white">Cerrar Sesión</a>
+            </div>
+        </div>
+   </div>
+
+
+{%  endblock    %}
+    

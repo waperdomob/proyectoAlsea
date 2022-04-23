@@ -1,7 +1,15 @@
 {%  extends "base.html" %}
+{% load static %}
 {%  block title %}
     Encuesta
 {%  endblock    %}
+{%  block scripts %}
+
+    <link href="{% static 'lib/select2-4.0.13/css/select2.min.css'  %}"></script>
+    <link href="{% static 'lib/select2-4.0.13/css/select2-bootstrap4.min.css'  %}"></script>
+    <script src="{% static 'lib/select2-4.0.13/js/select2.min.js'  %}"></script>
+ 
+{%  endblock  %} 
 
 {%  block content   %}
 <br>
@@ -9,32 +17,415 @@
     <div class=" contenedorEncuesta">
         <br><br><br>
         <a class="btn btn-secondary"style="color: aliceblue;" href="{%url 'inicio' %}">Back</a>
+
+        <h2 class="textLabel"><center>Fecha : {{fecha_actual}}</center></h2>
         <form action="{% url 'registrarEncuesta' %}" method="post">
             {% csrf_token %}
             <div class="row">
+            {% for object in form2 %}
+            <div class="col-lg-2  p-3 {% if object.errors %} has-error {% endif %}">                 
+                <div class=" cardContainer2" >                        
+                    <div class="grid-container">
+                        <label  class="textLabel" for="{{ object.html_name }}" > <!-- row.html_name imprime el nombre que django le da al campo -->
+                            {% if object.field.required %}<i class="fa fa-asterisk text-red"></i> {% endif %} {{ object.label_tag }} <!-- .label_tag es el valor del label que le diste en forms.py -->
+                            </label>
+                    </div>
+                    
+                    <p style="color: azure;">{{ object.help_text }}</p>
+                    <div class="boxItem">
+                        {{ object }} <!-- aqui imprimimos el campo -->
+                    </div>                               
+                    <p class="help-block">{{ object.errors.as_text }} {{ object.field.css_classes }}</p>
+                </div>                    
+            </div>
+            {% endfor %}
             {% for row in form %}
-                <div class="col-lg-2  p-3 {% if row.errors %} has-error {% endif %}"> 
-                    <div class=" cardContainer2" >
-                        
-                            <div class="grid-container">
-                                <label  class="textLabel" for="{{ row.html_name }}" > <!-- row.html_name imprime el nombre que django le da al campo -->
-                                    {% if row.field.required %}<i class="fa fa-asterisk text-red"></i> {% endif %}{{ row.label_tag }} <!-- .label_tag es el valor del label que le diste en forms.py -->
-                                    </label>
-                            </div>
-                            
-                            <p style="color: azure;">{{ row.help_text }}</p>
-                                {{ row }} <!-- aqui imprimimos el campo -->
-                            <p class="help-block">{{ row.errors.as_text }} {{ row.field.css_classes }}</p>
-                        
+            {% if "Por favor" in row.label_tag or "compañía" in row.label_tag or "A qué marca" in row.label_tag or "En qué ciudad" in row.label_tag or "Nombre de la tienda" in row.label_tag%}
+                <div class="col-lg-2  p-3 {% if row.errors %} has-error {% endif %}">
+                    <div class=" cardContainer2" >             
+                        <div class="grid-container">
+                            <label  class="textLabel" for="{{ row.html_name }}" >
+                                {% if row.field.required %}<i class="fa fa-asterisk text-red" ></i>{% endif %}
+                        {{ row.label_tag }}
+                        </label>
+                        </div>
+                    
+                        <p style="color: azure;">{{ row.help_text }}</p>
+                        <div class="boxItem">
+                            {{ row }}
+                        </div>                               
+                        <p class="help-block">{{ row.errors.as_text }} {{ row.field.css_classes }}</p>                       
+                    </div>                                       
+                </div>
+                {% endif %}             
+                {% if "Contratación." in row.label_tag %}
+                <div class="col-lg-6 p-3 cardContainer5"> 
+                    <div class="row">
+                        <h3><center>{{row.label_tag}}</center></h3>
+                        {% for object in form %}                
+                        {% if "Contratación" in object.label_tag %}
+                        <div class="col-lg-4 p-3">
+                            <div class="cardContainer4" >             
+                                <p style="color: azure;">{{ object.help_text }}</p>
+                                <div class="boxItem2">
+                                    {{ object }} <!-- aqui imprimimos el campo -->
+                                </div>                               
+                                <p class="help-block">{{ object.errors.as_text }} {{ object.field.css_classes }}</p>                       
+                            </div>                        
+                        </div>
+                        {% endif %}
+                        {% endfor %}
                     </div>                    
                 </div>
+                {% endif %} 
+                {% if "Nómina." in row.label_tag %}
+                <div class="col-lg-6 p-3 cardContainer5"> 
+                    <div class="row">
+                        <h3><center>{{row.label_tag}}</center></h3>
+                        {% for object in form %}                
+                        {% if "Nómina" in object.label_tag %}
+                        <div class="col-lg-4 p-3">
+                            <div class="cardContainer4" >             
+                                <p style="color: azure;">{{ object.help_text }}</p>
+                                <div class="boxItem2">
+                                    {{ object }} <!-- aqui imprimimos el campo -->
+                                </div>                               
+                                <p class="help-block">{{ object.errors.as_text }} {{ object.field.css_classes }}</p>                       
+                            </div>                        
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>                    
+                </div>
+                {% endif %} 
+                {% if "Trasferencia." in row.label_tag %}
+                <div class="col-lg-6 p-3 cardContainer5"> 
+                    <div class="row">
+                        <h3><center>{{row.label_tag}}</center></h3>
+                        {% for object in form %}                
+                        {% if "Trasferencia" in object.label_tag %}
+                        <div class="col-lg-4 p-3">
+                            <div class="cardContainer4" >             
+                                <p style="color: azure;">{{ object.help_text }}</p>
+                                <div class="boxItem2">
+                                    {{ object }} <!-- aqui imprimimos el campo -->
+                                </div>                               
+                                <p class="help-block">{{ object.errors.as_text }} {{ object.field.css_classes }}</p>                       
+                            </div>                        
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>                    
+                </div>
+                {% endif %} 
+                {% if "ADMINISTRATIVA." in row.label_tag %}
+                <div class="col-lg-6 p-3 cardContainer5"> 
+                    <div class="row">
+                        <h3><center>{{row.label_tag}}</center></h3>
+                        {% for object in form %}                
+                        {% if "ADMINISTRATIVA" in object.label_tag %}
+                        <div class="col-lg-4 p-3">
+                            <div class="cardContainer4" >             
+                                <p style="color: azure;">{{ object.help_text }}</p>
+                                <div class="boxItem2">
+                                    {{ object }} <!-- aqui imprimimos el campo -->
+                                </div>                               
+                                <p class="help-block">{{ object.errors.as_text }} {{ object.field.css_classes }}</p>                       
+                            </div>                        
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>                    
+                </div>
+                {% endif %} 
+                {% if "pagar." in row.label_tag %}
+                <div class="col-lg-6 p-3 cardContainer2"> 
+                    <div class="row">
+                        <h3><center>{{row.label_tag}}</center></h3>
+                        {% for object in form %}                
+                        {% if "Cuentas por pagar" in object.label_tag %}
+                        <div class="col-lg-4 p-3">
+                            <div class="cardContainer4" >             
+                                <p style="color: azure;">{{ object.help_text }}</p>
+                                <div class="boxItem2">
+                                    {{ object }} <!-- aqui imprimimos el campo -->
+                                </div>                               
+                                <p class="help-block">{{ object.errors.as_text }} {{ object.field.css_classes }}</p>                       
+                            </div>                        
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>                    
+                </div>
+                {% endif %}
+                {% if "POS." in row.label_tag %}
+                <div class="col-lg-6 p-3 cardContainer2"> 
+                    <div class="row">
+                        <h3><center>{{row.label_tag}}</center></h3>
+                        {% for object in form %}                
+                        {% if "POS" in object.label_tag %}
+                        <div class="col-lg-4 p-3">
+                            <div class="cardContainer4" >             
+                                <p style="color: azure;">{{ object.help_text }}</p>
+                                <div class="boxItem2">
+                                    {{ object }} <!-- aqui imprimimos el campo -->
+                                </div>                               
+                                <p class="help-block">{{ object.errors.as_text }} {{ object.field.css_classes }}</p>                       
+                            </div>                        
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>                    
+                </div>
+                {% endif %}
+                {% if "Tesorería." in row.label_tag %}
+                <div class="col-lg-6 p-3 cardContainer2"> 
+                    <div class="row">
+                        <h3><center>{{row.label_tag}}</center></h3>
+                        {% for object in form %}                
+                        {% if "Tesorería" in object.label_tag %}
+                        <div class="col-lg-4 p-3">
+                            <div class="cardContainer4" >             
+                                <p style="color: azure;">{{ object.help_text }}</p>
+                                <div class="boxItem2">
+                                    {{ object }} <!-- aqui imprimimos el campo -->
+                                </div>                               
+                                <p class="help-block">{{ object.errors.as_text }} {{ object.field.css_classes }}</p>                       
+                            </div>                        
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>                    
+                </div>
+                {% endif %}
+                {% if "insumos." in row.label_tag %}
+                <div class="col-lg-6 p-3 cardContainer2"> 
+                    <div class="row">
+                        <h3><center>{{row.label_tag}}</center></h3>
+                        {% for object in form %}                
+                        {% if "insumos" in object.label_tag %}
+                        <div class="col-lg-4 p-3">
+                            <div class="cardContainer4" >             
+                                <p style="color: azure;">{{ object.help_text }}</p>
+                                <div class="boxItem2">
+                                    {{ object }} <!-- aqui imprimimos el campo -->
+                                </div>                               
+                                <p class="help-block">{{ object.errors.as_text }} {{ object.field.css_classes }}</p>                       
+                            </div>                        
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>                    
+                </div>
+                {% endif %} 
+                {% if "AXIONLOG." in row.label_tag %}
+                <div class="col-lg-6 p-3 cardContainer2"> 
+                    <div class="row">
+                        <h3><center>{{row.label_tag}}</center></h3>
+                        {% for object in form %}                
+                        {% if "AXIONLOG" in object.label_tag %}
+                        <div class="col-lg-4 p-3">
+                            <div class="cardContainer4" >             
+                                <p style="color: azure;">{{ object.help_text }}</p>
+                                <div class="boxItem2">
+                                    {{ object }} <!-- aqui imprimimos el campo -->
+                                </div>                               
+                                <p class="help-block">{{ object.errors.as_text }} {{ object.field.css_classes }}</p>                       
+                            </div>                        
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>                    
+                </div>
+                {% endif %} 
+                {% if "Compras." in row.label_tag %}
+                <div class="col-lg-6 p-3 cardContainer2"> 
+                    <div class="row">
+                        <h3><center>{{row.label_tag}}</center></h3>
+                        {% for object in form %}                
+                        {% if "Compras" in object.label_tag %}
+                        <div class="col-lg-4 p-3">
+                            <div class="cardContainer4" >             
+                                <p style="color: azure;">{{ object.help_text }}</p>
+                                <div class="boxItem2">
+                                    {{ object }} <!-- aqui imprimimos el campo -->
+                                </div>                               
+                                <p class="help-block">{{ object.errors.as_text }} {{ object.field.css_classes }}</p>                       
+                            </div>                        
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>                    
+                </div>
+                {% endif %} 
+                {% if "Comunicación." in row.label_tag %}
+                <div class="col-lg-6 p-3 cardContainer2"> 
+                    <div class="row">
+                        <h3><center>{{row.label_tag}}</center></h3>
+                        {% for object in form %}                
+                        {% if "Comunicación" in object.label_tag %}
+                        <div class="col-lg-4 p-3">
+                            <div class="cardContainer4" >             
+                                <p style="color: azure;">{{ object.help_text }}</p>
+                                <div class="boxItem2">
+                                    {{ object }} <!-- aqui imprimimos el campo -->
+                                </div>                               
+                                <p class="help-block">{{ object.errors.as_text }} {{ object.field.css_classes }}</p>                       
+                            </div>                        
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>                    
+                </div>
+                {% endif %} 
+                {% if "HSEQ." in row.label_tag %}
+                <div class="col-lg-6 p-3 cardContainer2"> 
+                    <div class="row">
+                        <h3><center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{row.label_tag}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center></h3>
+                        {% for object in form %}                
+                        {% if "HSEQ" in object.label_tag %}
+                        <div class="col-lg-4 p-3">
+                            <div class="cardContainer4" >             
+                                <p style="color: azure;">{{ object.help_text }}</p>
+                                <div class="boxItem2">
+                                    {{ object }} <!-- aqui imprimimos el campo -->
+                                </div>                               
+                                <p class="help-block">{{ object.errors.as_text }} {{ object.field.css_classes }}</p>                       
+                            </div>                        
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>                    
+                </div>
+                {% endif %} 
+                {% if "LEGAL." in row.label_tag %}
+                <div class="col-lg-6 p-3 cardContainer2"> 
+                    <div class="row">
+                        <h3><center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{row.label_tag}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center></h3>
+                        {% for object in form %}                
+                        {% if "LEGAL" in object.label_tag %}
+                        <div class="col-lg-4 p-3">
+                            <div class="cardContainer4" >             
+                                <p style="color: azure;">{{ object.help_text }}</p>
+                                <div class="boxItem2">
+                                    {{ object }} <!-- aqui imprimimos el campo -->
+                                </div>                               
+                                <p class="help-block">{{ object.errors.as_text }} {{ object.field.css_classes }}</p>                       
+                            </div>                        
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>                    
+                </div>
+                {% endif %} 
+                {% if "Sistema de venta." in row.label_tag %}
+                <div class="col-lg-6 p-3 cardContainer2"> 
+                    <div class="row">
+                        <h3><center>{{row.label_tag}}</center></h3>
+                        {% for object in form %}                
+                        {% if "Sistema de venta" in object.label_tag %}
+                        <div class="col-lg-4 p-3">
+                            <div class="cardContainer4" >             
+                                <p style="color: azure;">{{ object.help_text }}</p>
+                                <div class="boxItem2">
+                                    {{ object }} <!-- aqui imprimimos el campo -->
+                                </div>                               
+                                <p class="help-block">{{ object.errors.as_text }} {{ object.field.css_classes }}</p>                       
+                            </div>                        
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>                    
+                </div>
+                {% endif %}
+                {% if "ayuda." in row.label_tag %}
+                <div class="col-lg-6 p-3 cardContainer2"> 
+                    <div class="row">
+                        <h3><center>{{row.label_tag}}</center></h3>
+                        {% for object in form %}                
+                        {% if "ayuda" in object.label_tag %}
+                        <div class="col-lg-4 p-3">
+                            <div class="cardContainer4" >             
+                                <p style="color: azure;">{{ object.help_text }}</p>
+                                <div class="boxItem2">
+                                    {{ object }} <!-- aqui imprimimos el campo -->
+                                </div>                               
+                                <p class="help-block">{{ object.errors.as_text }} {{ object.field.css_classes }}</p>                       
+                            </div>                        
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>                    
+                </div>
+                {% endif %}
+                {% if "soporte?" in row.label_tag %}
+                <div class="col-lg-6 p-3 cardContainer2"> 
+                    
+                        <h3><center> {{row.label_tag}}</center></h3>
+                        {% for object in form %}                
+                        {% if "soporte?" in object.label_tag %}
+                        
+                                     
+                            <p style="color: azure;">{{ object.help_text }}</p>
+                            <div class="boxItem3">
+                                {{ object }} <!-- aqui imprimimos el campo -->
+                            </div>                               
+                            <p class="help-block">{{ object.errors.as_text }} {{ object.field.css_classes }}</p>                       
+                                               
+                        
+                        {% endif %}
+                        {% endfor %}
+                                       
+                </div>
+                {% endif %}  
             {% endfor %}
             </div>
-            <br>
+            <br><br>
                 <div>
                     <button type="submit" class="btn centrado2 btn-lg" style="text-decoration: none; color:white">Enviar!</button>
                 </div>
-                <br><br>
+                <br><br><br><br><br><br> 
         </form>
     </div>
+    
+    <script>
+        var $crf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
+        $(function () {
+            $('select[name="area"]').on('change', function() {
+                var id = $(this).val();
+                var select_cargos = $('select[name="cargo"]');
+                var options = '<option value="">-----------</option>';
+                if (id === "") {
+                    select_cargos.html(options);
+                    return false;
+                }
+                $.ajax({
+                type: 'POST',
+                url: window.location.pathname,
+                data: {
+                    'action': 'search_cargo_id',
+                    'id':id,
+                },
+                headers:{"X-CSRFToken": $crf_token},
+                dataType: 'json',
+                }).done(function(data){
+                    console.log(data);
+                    if (!data.hasOwnProperty('error')){
+                        $.each(data, function (key, value) {
+                            options+='<option value="'+value.id+'">'+value.cargo+'</option>';
+                        });
+                        return false;
+                    }
+                    message_error(data.error );
+                }).fail(function(jqXHR, textStatus, errorThrown){
+                    
+                    console.log(textStatus+': '+ errorThrown)
+                }).always(function(data){
+                    select_cargos.html(options);
+                });               
+                
+            });
+  
+        });
+    </script>
 {%  endblock    %}

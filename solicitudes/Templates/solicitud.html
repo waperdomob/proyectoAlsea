@@ -8,16 +8,23 @@ Registro de Solicitudes
 {%  block content   %}
 <br><br>
 <div class="container contenedor2">
+    <button type="button" class="btn btn-warning" data-bs-toggle="modal"        data-bs-target="#helpModal2">Ayuda 
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+          </svg>
+    </button>    
+    {%  include "modal.html" %}
     <div class="row justify-content-center">
         <div class="col-sm-6 col-md-4">
             <div class=" cardContainer" >
                 <div class="card-body">
-                    <h5 class="textLabel">{{datos.nombre}}</h5>
-                    <p class="textLabel">Razón social: {{datos.razonSocial}}</p>
-                    <p class="textLabel">Número Proveedor: {{datos.numProveedor}}</p>
-                    <p class="textLabel">{{datos.vinculacion}}</p>
-                    <p class="textLabel">Marca: {{datos.marca}}</p>
-                    <p class="textLabel">Fecha: {{datos.fecha}}</p>
+                    <h5 class="textLabel2">{{datos.nombre}}</h5>
+                    <p class="textLabel2">Razón social: {{datos.razonSocial}}</p>
+                    <p class="textLabel2">Número Proveedor: {{datos.numProveedor}}</p>
+                    <p class="textLabel2">{{datos.vinculacion}}</p>
+                    <p class="textLabel2">Marca: {{datos.marca}}</p>
+                    <p class="textLabel2">Fecha: {{datos.fecha}}</p>
 
                     <form action="{% url 'editar' datos.rutNit %}" method="POST">
                         {% csrf_token %}
@@ -35,7 +42,7 @@ Registro de Solicitudes
             </div>
         </div>
 
-        <div class="col-6 col-md-5">
+        <div class="col-6 col-md-6">
             <div class="cardContainer">
                 <ul>
                     {% for object in docs %}
