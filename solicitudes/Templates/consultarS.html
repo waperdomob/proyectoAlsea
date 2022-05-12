@@ -1,13 +1,27 @@
 {%  extends "index.html" %}
 {%  block title %}
-Consultar de Solicitudes
+    Listado de Solicitudes
 {%  endblock    %}
 
-<br><br><br>
+{%  load static %}
+{%  block head  %}
+
+    <link rel="stylesheet" href="{% static 'libs/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'libs/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}"/>
+    <script src="{% static 'libs/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'libs/datatables-1.10.20/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'libs/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'libs/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+
+{%  endblock    %}
+
+
+
 {%  block content   %}
 <br><br>
     
-    <h2 style="color: #f7f8f8;"><center>Consulte si la Solicitud esta completa</center></h2>
+    <h2 style="color: #f7f8f8;"><center>Listado de Proveedores</center></h2>
+    <br><br>
     <div class="container ">
         {% if messages %}
         <ul class="messages">
@@ -25,25 +39,56 @@ Consultar de Solicitudes
         {% endif %} 
               
         <div class="container">
-            <form action="{% url 'consultarSolicitud' %}" method="POST">
-                {% csrf_token %}
-                <div class="mb-3  contCon" role="alert" >
-                    <label for="" class="form-label">Ingrese el número de Rut o Nit</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" name="rutNit" required>
-                    <button type="submit" class="btn btn-primary btn-lg mt-3"
-                        style="text-decoration: none; color:white">
-                        Consultar
-                    </button>
-                </div>            
-            </form>
+            <table class="table" style="color: #f7f8f8;" id="data">
+                <thead>
+                    <tr>
+                      <th scope="col">rut/Nit</th>
+                      <th scope="col">Ticket</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Razón Social</th>
+                      <th scope="col">Num Proveedor</th>
+                      <th scope="col">Vinculacion</th>
+                      <th scope="col">Marca</th>
+
+                      <th scope="col"><center>Acciones</center></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for object in datos %}
+                    <tr>
+                        <td>{{object.rutNit}}</td>
+                        <td>{{object.ticket}}</td>
+                        <td>{{object.nombre}}</td>
+                        <td>{{object.razonSocial}}</td>
+                        <td>{{object.numProveedor}}</td>
+                        <td>{{object.vinculacion}}</td>
+                        <td>{{object.marca}}</td>
+                        <td>
+                            <div class="d-grid gap-2 col-8 mx-auto">
+                                <a href="{% url 'detalleProveedor' object.rutNit %}" class="btn btn-warning">Ver</a>
+                            </div>
+                            
+                            
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
         
     </div>
- 
-    <script>
-        alert_jquery_confirm();
-    </script>
-   <br><br><br><br><br>
-   <br><br><br><br><br><br>
+    <br><br><br><br><br>
+    <br><br><br><br><br>
 
 {%  endblock  %}
+
+{%  block javascript  %}
+    <script type="application/javascript">
+    
+    $('#data').DataTable({
+        responsive: true,
+        autoWidth: false
+    });
+    
+   </script>
+{%  endblock    %}

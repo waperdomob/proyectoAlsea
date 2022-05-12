@@ -9,7 +9,7 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect, JsonRespons
 
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
-import numpy as np 
+#import numpy as np
 import pandas as pd
 from encuesta.utils import get_ciudad_from_id,get_marca_from_id, get_chart
 from encuesta.funcions.funcions import filtrar,pasar_dicc,agregar_elemento1,agregar_elemento2
@@ -173,7 +173,6 @@ def estadisticas(request):
 def eliminarReporte(request,pk):
     if request.user.is_superuser:
         reporte = Reporte.objects.get(id=pk)
-        print(reporte)
         reporte.delete()
         reportes = Reporte.objects.all()
         context = {

@@ -40,7 +40,7 @@ class SolicitudForm(forms.ModelForm):
             'marca':'Marca',
             }
         widgets = {
-	        'rutNit':forms.TextInput(attrs={'class':'form-control'}),
+	        'rutNit':forms.NumberInput(attrs={'class':'form-control'}),
 	        'ticket':forms.NumberInput(attrs={'class':'form-control'}),
 	        'nombre':forms.TextInput(attrs={'class':'form-control'}),
             'razonSocial':forms.TextInput(attrs={'class':'form-control'}),

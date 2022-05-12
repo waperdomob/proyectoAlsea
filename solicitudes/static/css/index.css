@@ -5,7 +5,7 @@ body {
     /* background: #153786; */
     background-image: linear-gradient(to right, #153786, #0a5eda, #153786, #153786, #153786, #153786, #153786, #153786, #153786, #153786, #3e68e2, #153786);
 
-    
+    color: white;
     
 }
 html {
@@ -35,6 +35,8 @@ html {
     -ms-transform: translateY(-50%);
     transform: translateX(600px);
   }
+
+ 
   .cardContainer{
     
     

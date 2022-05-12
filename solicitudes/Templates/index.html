@@ -4,18 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/png" href="https://alsea.net/alsea-icon-192x192.png">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">    
-    <link rel="stylesheet" href="{% static 'libs/jquery-confirm/jquery-confirm.min.css' %}">    
-
 
     <title>
       {%  block title %}{%  endblock  %}
     </title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <link rel="icon" type="image/png" href="https://alsea.net/alsea-icon-192x192.png">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">    
+    <link rel="stylesheet" href="{% static 'libs/jquery-confirm/jquery-confirm.min.css' %}"> 
+    <!-- estilos y javascript  -->  
+    {%  block head  %}
+    {%  endblock    %}
+
+   
 </head>
 <body>
     <div class="container">
@@ -35,10 +42,10 @@
                 <a class="nav-link active" aria-current="page" href="{% url 'documentos' %}" >Documentos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'registrarS'%}">Registrar Solicitud</a>
+                <a class="nav-link" href="{% url 'registrarS' %}">Registrar Proveedor</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'consultarS'%}">Consultar Solicitudes</a>
+                <a class="nav-link" href="{% url 'solicitudes' %}"> Proveedores</a>
               </li>
               {% if user.is_superuser %}
                 <li class="nav-item">
@@ -51,7 +58,7 @@
               {% endif %}
               {% if user.is_authenticated %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'logout'%}" tabindex="-1" aria-disabled="true">logout</a>
+                  <a class="nav-link" href="{% url 'logout' %}" tabindex="-1" aria-disabled="true">logout</a>
                 </li>
                 
               {% else %}
@@ -61,10 +68,7 @@
               {% endif %}
               
             </ul>
-            <form action="{% url 'consultarSolicitud' %}" method="POST" class="d-flex">{% csrf_token %}
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="rutNit">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            
           </div>
         </div>
       </nav>
@@ -95,12 +99,13 @@
         </div>
       </footer>
           
-      
-    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>   
-</body>
-</html>
-{% load static %}
-    
+    {% load static %} 
     <script type="text/javascript" src="{% static 'js/select.js' %}"></script>  
     <script src="{% static 'js/funciones.js' %}"></script> 
     <script src="{% static 'libs/jquery-confirm/jquery-confirm.min.js' %}"></script>  
+    {%  block javascript  %}
+      {%  endblock    %}  
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>    
+</body>
+</html>
+

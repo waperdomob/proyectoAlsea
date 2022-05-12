@@ -20,7 +20,7 @@ class AreasForm(forms.ModelForm):
         model= Areas
         fields = '__all__'
         labels = {
-            'area':'¿En qué área se encuentra?',
+            'area':'Centro de soporte',
         }
         
         widgets = {

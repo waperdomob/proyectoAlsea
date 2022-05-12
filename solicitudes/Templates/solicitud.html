@@ -19,24 +19,21 @@ Registro de Solicitudes
         <div class="col-sm-6 col-md-4">
             <div class=" cardContainer" >
                 <div class="card-body">
-                    <h5 class="textLabel2">{{datos.nombre}}</h5>
-                    <p class="textLabel2">Razón social: {{datos.razonSocial}}</p>
-                    <p class="textLabel2">Número Proveedor: {{datos.numProveedor}}</p>
-                    <p class="textLabel2">{{datos.vinculacion}}</p>
-                    <p class="textLabel2">Marca: {{datos.marca}}</p>
-                    <p class="textLabel2">Fecha: {{datos.fecha}}</p>
+                    <h5 class="textLabel2">{{object.nombre}}</h5>
+                    <p class="textLabel2">Razón social: {{object.razonSocial}}</p>
+                    <p class="textLabel2">Número Proveedor: {{object.numProveedor}}</p>
+                    <p class="textLabel2">{{object.vinculacion}}</p>
+                    <p class="textLabel2">Marca: {{object.marca}}</p>
+                    <p class="textLabel2">Fecha: {{object.fecha}}</p>
 
-                    <form action="{% url 'editar' datos.rutNit %}" method="POST">
+                    <form action="{% url 'editar' object.rutNit %}" method="POST">
                         {% csrf_token %}
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" name="rutNit" value="{{ datos.rutNit }}" hidden>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" name="rutNit" value="{{ object.rutNit }}" hidden>
                         <button type="submit" class="btn btn-primary btn-lg mt-3"
                         style="text-decoration: none; color:white">
                         Editar
                     </button>
-                    </form>
-                    
-                    
-                
+                    </form> 
                 </div> 
                             
             </div>

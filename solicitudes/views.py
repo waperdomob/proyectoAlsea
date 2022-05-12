@@ -4,13 +4,15 @@ from faulthandler import disable
 import os
 from django import forms 
 from django.conf import settings
+from django.views.generic import CreateView,ListView, FormView, DetailView,UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.middleware import *
-from django.forms import HiddenInput
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.core.files.storage import default_storage, FileSystemStorage
+from django.urls import reverse, reverse_lazy
 
 from solicitudes.models import Documentos, Marca, Solicitudes
 
@@ -22,10 +24,41 @@ def handle_not_found(request,exception):
 
 def index(request):   
     if request.user.is_authenticated:
-        return render(request,"consultarS.html")
+        return redirect('registrarS')
+
     else:    
         response = redirect('/accounts/login')
         return response
+
+class Proveedores(ListView):
+    model = Solicitudes
+    template_name = 'consultarS.html'
+
+    def get_queryset(self):
+        user_id=int(self.request.session.get('_auth_user_id'))
+        return self.model.objects.filter(user_id=user_id)
+    
+    def get_context_data(self,*args, **kwargs):        
+        context = {}
+        context['datos'] = self.get_queryset()
+        return context
+ 
+    def get(self, request, *args, **kwargs):
+        return render(request,self.template_name,self.get_context_data())
+
+class detalleProveedor(DetailView):
+
+    model = Solicitudes
+    template_name='solicitud.html'
+    def get_queryset(self):
+        qs = super(detalleProveedor, self).get_queryset()
+        return qs.filter(pk=self.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        Docs = Documentos.objects.filter(solicitudes_rutNit_id = self.kwargs['pk'])
+        context = super().get_context_data(**kwargs)
+        context['docs'] = Docs
+        return context
 
 @login_required
 def documentos(request):    
@@ -38,10 +71,6 @@ def registrarS(request):
     form3=FormularioDocs2()
     return render(request,"registrarS.html",{"form1":miFormulario1,"form2":miFormulario2,'form3':form3})
 
-@login_required
-def consultarS(request):
-    fecha_actual=datetime.datetime.now()
-    return render(request,"consultarS.html",{"fecha":fecha_actual})
 
 @login_required
 def registrarSolicitud(request):
@@ -101,7 +130,7 @@ def registrarSolicitud(request):
     
 
 @login_required
-def consultarSolicitud(request):
+def consultarSolicitud(request, pk):
     user_id=int(request.session.get('_auth_user_id'))
     
     if request.method=="POST":

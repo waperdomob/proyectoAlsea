@@ -23,7 +23,7 @@ class Solicitudes(models.Model):
     nombre = models.CharField(max_length=45)
     razonSocial = models.CharField(max_length=45)
     numProveedor = models.CharField(max_length=45)
-    fecha = models.DateField()
+    fecha = models.DateField(auto_now_add=True)
     vinculacion = models.CharField(choices=CHOICES2, max_length=45)
     user = models.ForeignKey(User,null=True, on_delete=models.CASCADE)
     marca = models.ForeignKey(Marca,null=True, on_delete=models.CASCADE)
